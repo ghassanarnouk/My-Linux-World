@@ -1,4 +1,13 @@
-" Highlight syntax? You can toggle this by typing the command below The command does syntax highlighting for the majority of programming languages but not
+"   _       _ _         _           
+"  (_)     (_) |       (_)          
+"   _ _ __  _| |___   ___ _ __ ___  
+"  | | '_ \| | __\ \ / / | '_ ` _ \ 
+"  | | | | | | |_ \ V /| | | | | | |
+"  |_|_| |_|_|\__(_)_/ |_|_| |_| |_|
+
+
+" Highlight syntax? You can toggle this by typing the command below 
+" The command does syntax highlighting for the majority of programming languages but not
 " all of them
 syntax on
 
@@ -17,6 +26,7 @@ set nowrap
 " below
 set autoindent
 
+"
 set showmatch
 
 
@@ -26,3 +36,5 @@ set showmatch
 " setup keymappings
 nnoremap <Tab> :tabNext<CR>
 noremap <C-n> :tabnew 
+
+
