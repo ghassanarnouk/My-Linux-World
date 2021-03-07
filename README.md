@@ -1,15 +1,13 @@
 # My-Linux-World
 
-# Project Title
-
 One Paragraph of project objective goes here
 
 ## Table of contents
 
-1. [Section 1]()<br>
-2. [Section 2]()<br>
-3. [Section 3]()<br>
-4. [Section 4]()<br>
+1. [Ranger](/ranger)
+2. [Nvim](/nvim)
+3. [Section 3]()
+4. [Section 4]()
 
 ## Prerequisites
 
