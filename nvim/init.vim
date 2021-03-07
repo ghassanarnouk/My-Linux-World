@@ -27,7 +27,14 @@ set rnu
 " below
 set autoindent
 
-" set showmatch
+" Wants indentation reacting to the code syntax? You can toggle this by typing
+" the command below
+" NOTE: smart does funny things based on keyboards
+set smartindent
+
+" STILL TRYING TO FIGURE THIS OUT
+set showmatch
+set matchtime=3
 
 " Insert space characters whenever tab is pressed? You can toggle this by
 " typing the command below
@@ -45,10 +52,10 @@ set softtabstop=4
 " this by typing the command below 
 set shiftwidth=4
 
-" Turn off automartic (soft) line wrapping? You can toggle this by typing the command below
+" Turn off automatic (soft) line wrapping? You can toggle this by typing the command below
 " set nowrap
 
-" Turn on automartic (soft) line wrapping? You can toggle this by typing the command below
+" Turn on automatic (soft) line wrapping? You can toggle this by typing the command below
 set wrap linebreak
 
 " Prevent Vim from automatically inserting line breaks in newly entered text? You can toggle
@@ -57,11 +64,52 @@ set wrap linebreak
 set wm=0
 set tw=0
 
-" Perfers cursor to be centered with scrolloff? You can toggle this by typing
+" Prefers cursor to be centred with scroll off? You can toggle this by typing
 " the command below and setting it to a very large number
 " Alternative command :set scrolloff=999 
 set so=999
 
+
+" set incsearch
+
+" Modify search to be always case insensitive? You can toggle this by typing the
+" command below
+set ignorecase
+
+" Wants search to be case sensitive only if patter has an uppercase letter? You can
+" toggle this by typing the command below
+" Only possible if ignorecase is toggled on
+set smartcase
+
+" Highlight search matches? You can toggle this by typing the command below 
+set hlsearch
+
+" Show the line and column number of the cursor position? You can toggle this
+" by typing the command below
+" This command is ON by DEFAULT
+" Alternative command :set ruler
+set ru
+
+" Controls when and how to display the status bar? You can toggle this by typing the command below
+" 0 (never)
+" 1 (status bar shows if there are more than 2 windows)
+" 2 always - DEFAULT
+set laststatus=2
+
+" Stops continuation of comments on newline? You can toggle this by typing the command below
+" Alternative command: set formatoptions-=cro
+" set fo-=cro
+
+set spell spelllang=en_ca
+
+
+""" Unused commands but they are here just in case
+
+" set mouse=a
+" set clipboard=unnamedplus
+" set background=dark - by DEFAULT
+" set cursorline
+" set cmdheight=2
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -88,11 +136,19 @@ endfunction
 
 
 """""""""""""""""""""""""""""""""""""GENERAL""""""""""""""""""""""""""""""""""""""""""""
+
+" Prefers <leader> key to not be \ by default? You can set this by typing
+" the command below and setting it to desired key
+let mapleader=","
+
 " Sourcing init.vim config file
 noremap <F2> :source $HOME/.config/nvim/init.vim<CR> 
 
 "Toggle on and off relative line number 
 nnoremap <F3> :set rnu!<CR>
+
+" Toggle on and off spell checking
+nnoremap <F4> :set spell!<CR>
 
 " Documentation [In Progress]
 nnoremap <Tab> :tabNext<CR>
