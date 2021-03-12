@@ -103,6 +103,7 @@ set laststatus=2
 set spell spelllang=en_ca
 
 
+
 """ Unused commands but they are here just in case
 
 " set mouse=a
@@ -132,14 +133,19 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " noremap stands for Non-Recursive Mapping
-" <CR> stands for Carriage Return
+" <CR> stands for: Carriage Return
+" htbp stands for: here, top, bottom, point of float 
+" Using align environment over equation in LaTeX provides more spacing between text
+" and equation
+
+" Note that in vim, p is used to paste before the cursor while P is after
 
 
 """""""""""""""""""""""""""""""""""""GENERAL""""""""""""""""""""""""""""""""""""""""""""
 
 " Prefers <leader> key to not be \ by default? You can set this by typing
 " the command below and setting it to desired key
-let mapleader=","
+let mapleader=";"
 
 " Sourcing init.vim config file
 noremap <F2> :source $HOME/.config/nvim/init.vim<CR> 
@@ -154,32 +160,60 @@ nnoremap <F4> :set spell!<CR>
 nnoremap <Tab> :tabNext<CR>
 noremap <C-n> :tabnew 
 
+" Navigate to the next <++>
+noremap <silent> <leader><Space> <Esc>/<++><Enter>"_c4l
+
+" Copy Paste functionality from/to vim to/from other applications
+vnoremap <C-c> "*y :let @+=@*<CR>
+map <C-v> "+p
 
 
+"""""""""""""""""""""""""""""""""""""""TEX""""""""""""""""""""""""""""""""""""""""""""""
+
+" Insert a begin environment
+autocmd FileType tex inoremap ;bg \begin{<++>}<CR><++><CR>\end{<++>}<CR><++><Esc>?begin<Enter>"_i<Esc>
+
+" Insert figure environment
+autocmd FileType tex inoremap ;fg \begin{figure}[htbp]<CR>\begin{centering}<CR>\includegraphics[<++>]{<++>}<CR>\captionof{figure}{<++>}<CR>\label{fig:<++>}<CR>\end{centering}<CR>\end{figure}<CR><++><Esc>?begin{figure}<Enter>"_i<Esc>
 
 
+" Insert equation environment 
+autocmd FileType tex inoremap ;eq \begin{equation}<CR><++><CR>\label{eqt:<++>}<CR>\end{equation}<CR><++><Esc>?begin<Enter>"_i<Esc>
+
+" Insert an unnumbered equation environment
+autocmd FileType tex inoremap ;ueq \begin{align*}<CR><++><CR>\label{eqt:<++>}<CR>\end{align*}<CR><++><Esc>?begin<Enter>"_i<Esc>
+
+" Insert align environment 
+autocmd FileType tex inoremap ;al \begin{equation}<CR><++><CR>\label{eqt:<++>}<CR>\end{equation}<CR><++><Esc>?begin<Enter>"_i<Esc>
+
+" Insert an unnumbered align environment
+autocmd FileType tex inoremap ;ual \begin{align*}<CR><++><CR>\label{eqt:<++>}<CR>\end{align*}<CR><++><Esc>?begin<Enter>"_i<Esc>
 
 
+" Insert reference command
+autocmd FileType tex inoremap ;re \ref{<++>}<Space><++><Esc>?ref<Enter>"_i<Esc>
+
+" Insert SI units command
+autocmd FileType tex inoremap ;si \SI{<++>}{<++>}<Space><++><Esc>?SI<Enter>"_i<Esc>
 
 
+" Insert section environment
+autocmd FileType tex inoremap ;s \section{<++>}<CR>\label{sct:<++>}<CR><++><Esc>?section<Enter>"_i<Esc>
 
+" Insert unnumbered section environment
+autocmd FileType tex inoremap ;us \section{<++>}<CR>\label{sct:<++>}<CR><++><Esc>?section<Enter>"_i<Esc>
 
+" Insert subsection environment
+autocmd FileType tex inoremap ;ss \subsection{<++>}<CR>\label{ssct:<++>}<CR><++><Esc>?section<Enter>"_i<Esc>
 
+" Insert unnumbered subsection environment
+autocmd FileType tex inoremap ;uss \subsection*{<++>}<CR>\label{ssct:<++>}<CR><++><Esc>?section<Enter>"_i<Esc>
 
+" Insert subsubsection environment
+autocmd FileType tex inoremap ;sss \subsubsection*{<++>}<CR>\label{ssct:<++>}<CR><++><Esc>?section<Enter>"_i<Esc>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+" Insert unnumbered subsubsection environment
+autocmd FileType tex inoremap ;usss \subsubsection*{<++>}<CR>\label{ssct:<++>}<CR><++><Esc>?section<Enter>"_i<Esc>
 
 
 
