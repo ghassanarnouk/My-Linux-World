@@ -7,6 +7,37 @@
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                      Plugins
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+call plug#begin( '~/local/share/nvim/plugged')
+
+" https://github.com/bluz71/vim-nightfly-guicolors
+Plug 'bluz71/vim-nightfly-guicolors'
+
+call plug#end()
+
+
+"""""""""""""""""""""""""""""""""""""""Nightfly-Plugin""""""""""""""""""""""""""""""""""
+
+" Want to set the color scheme to nightfly? You can toggle this by typing the command below
+colorscheme nightfly
+
+" Setting 24-bit true colors and the nightfly theme
+set termguicolors
+
+" Underline matching parentheses? You can toggle this by typing the command
+" below
+let g:nightflyUnderlineMatchParen = 1
+
+" Prefer colored cursor? You can toggle this by typing the command below
+let g:nightflyCursorColor=1
+
+" Prefer unitalicized comments? You can toggle this by typing the command below 
+" let g:nightflyItalics=0
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                   General Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -27,7 +58,7 @@ set rnu
 " below
 set autoindent
 
-" Wants indentation reacting to the code syntax? You can toggle this by typing
+" Want indentation reacting to the code syntax? You can toggle this by typing
 " the command below
 " NOTE: smart does funny things based on keyboards
 set smartindent
@@ -64,19 +95,20 @@ set wrap linebreak
 set wm=0
 set tw=0
 
-" Prefers cursor to be centred with scroll off? You can toggle this by typing
+" Prefer cursor to be centered with scroll off? You can toggle this by typing
 " the command below and setting it to a very large number
 " Alternative command :set scrolloff=999 
 set so=999
 
-
-" set incsearch
+" Highlight the first string that matches a search pattern? You can toggle
+" this by typing the command below
+set incsearch
 
 " Modify search to be always case insensitive? You can toggle this by typing the
 " command below
 set ignorecase
 
-" Wants search to be case sensitive only if patter has an uppercase letter? You can
+" Want search to be case sensitive only if patter has an uppercase letter? You can
 " toggle this by typing the command below
 " Only possible if ignorecase is toggled on
 set smartcase
@@ -90,31 +122,36 @@ set hlsearch
 " Alternative command :set ruler
 set ru
 
-" Controls when and how to display the status bar? You can toggle this by typing the command below
+" Control when and how to display the status bar? You can toggle this by typing the command below
 " 0 (never)
 " 1 (status bar shows if there are more than 2 windows)
 " 2 always - DEFAULT
-set laststatus=2
+set laststatus=0
 
-" Stops continuation of comments on newline? You can toggle this by typing the command below
-" Alternative command: set formatoptions-=cro
+" Stop continuation of comments on newline? You can toggle this by typing the command below
+" Alternative command :set formatoptions-=cro
 " set fo-=cro
 
-set spell spelllang=en_ca
+" Prevent having misspelled words? You can toggle this by typing the command below 
+set spell spelllang=en_us
 
+" Want to set 24-bit true colors? You can toggle this by typing the command below
+set termguicolors
+
+" Set the + register (system clipboard) as the default? You can toggle this by typing the command below
+set clipboard=unnamedplus
 
 
 """ Unused commands but they are here just in case
 
 " set mouse=a
-" set clipboard=unnamedplus
-" set background=dark - by DEFAULT
+" set background=dark " - by DEFAULT
 " set cursorline
 " set cmdheight=2
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                                   Functions
+"                                    Scripts
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " A function name MUST start with an UPPERCASE letter
@@ -139,7 +176,7 @@ endfunction
 " and equation
 
 " Note that in vim, p is used to paste before the cursor while P is after
-
+" To cancel the highlight of searched items :noh
 
 """""""""""""""""""""""""""""""""""""GENERAL""""""""""""""""""""""""""""""""""""""""""""
 
@@ -150,27 +187,34 @@ let mapleader=";"
 " Sourcing init.vim config file
 noremap <F2> :source $HOME/.config/nvim/init.vim<CR> 
 
-"Toggle on and off relative line number 
+" Toggle on and off relative line number 
 nnoremap <F3> :set rnu!<CR>
 
 " Toggle on and off spell checking
 nnoremap <F4> :set spell!<CR>
 
+" Toggle off the search highlight
+" nnoremap <F7> :set noh!<CR>
+
 " Documentation [In Progress]
 nnoremap <Tab> :tabNext<CR>
 noremap <C-n> :tabnew 
 
-" Navigate to the next <++>
+" Navigate to the next <++> in Normal mode
 noremap <silent> <leader><Space> <Esc>/<++><Enter>"_c4l
 
+" Navigate to the next <++> in Insert mode
+inoremap <silent> <leader><Space><Space> <Esc>/<++><Enter>"_c4l
+
 " Copy Paste functionality from/to vim to/from other applications
+" Does the same as :set clipboard=unnamedplus
 vnoremap <C-c> "*y :let @+=@*<CR>
 map <C-v> "+p
 
 
 """""""""""""""""""""""""""""""""""""""TEX""""""""""""""""""""""""""""""""""""""""""""""
 
-" Insert a begin environment
+" Insert begin environment
 autocmd FileType tex inoremap ;bg \begin{<++>}<CR><++><CR>\end{<++>}<CR><++><Esc>?begin<Enter>"_i<Esc>
 
 " Insert figure environment
@@ -191,10 +235,36 @@ autocmd FileType tex inoremap ;ual \begin{align*}<CR><++><CR>\label{eqt:<++>}<CR
 
 
 " Insert reference command
-autocmd FileType tex inoremap ;re \ref{<++>}<Space><++><Esc>?ref<Enter>"_i<Esc>
+autocmd FileType tex inoremap ;r \ref{<++>}<Space><++><Esc>?ref<Enter>"_i<Esc>
 
 " Insert SI units command
 autocmd FileType tex inoremap ;si \SI{<++>}{<++>}<Space><++><Esc>?SI<Enter>"_i<Esc>
+
+" Insert pagebreak command
+autocmd FileType tex inoremap ;pgb \pagebreak<CR><++><Esc>?pagebreak<Enter>"_i<Esc>
+
+" Insert fraction command
+autocmd FileType tex inoremap ;f \frac{<++>}{<++>}<Esc>?frac<Enter>"_i<Esc>
+
+" Insert more spaced fraction command
+autocmd FileType tex inoremap ;ddf \ddfrac{<++>}{<++>}<Esc>?ddfrac<Enter>"_i<Esc>
+
+" Insert no number command
+autocmd FileType tex inoremap ;nnu \nonumber<Esc>
+
+" Insert comment character
+autocmd FileType tex nnoremap ;5 0i%<Esc>
+
+" Comments 260-264 are under review
+
+" Insert bold text command
+autocmd FileType tex inoremap ;b \bfseries{<++>}<Space><++><Esc>?bfseries<Enter>"_i<Esc>
+
+" Insert italics text command
+autocmd FileType tex inoremap ;i \emph{<++>}<Space><++><Esc>?bfseries<Enter>"_i<Esc>
+
+" Insert underline text command
+autocmd FileType tex inoremap ;u \underline{<++>}<Space><++><Esc>?bfseries<Enter>"_i<Esc>
 
 
 " Insert section environment
