@@ -33,7 +33,7 @@ let g:nightflyUnderlineMatchParen = 1
 " Prefer colored cursor? You can toggle this by typing the command below
 let g:nightflyCursorColor=1
 
-" Prefer unitalicized comments? You can toggle this by typing the command below 
+" Prefer unitalicized comments? You can toggle this by uncommenting the command below 
 " let g:nightflyItalics=0
 
 
@@ -220,6 +220,12 @@ autocmd FileType tex inoremap ;bg \begin{<++>}<CR><++><CR>\end{<++>}<CR><++><Esc
 " Insert figure environment
 autocmd FileType tex inoremap ;fg \begin{figure}[htbp]<CR>\begin{centering}<CR>\includegraphics[<++>]{<++>}<CR>\captionof{figure}{<++>}<CR>\label{fig:<++>}<CR>\end{centering}<CR>\end{figure}<CR><++><Esc>?begin{figure}<Enter>"_i<Esc>
 
+" Commands at lines 225 & 227 are under review
+
+autocmd FileType tex nnoremap ;tb \begin{table}[htbp]<CR>\centering<CR>\caption{<++>}<CR>\begin{tabular}{<++>}<CR><++><CR>\csvreader[<++>]{<++>}{}<CR>{<++>}<CR>\end{tabular}<CR>\label{tab:<++>}<CR>\end{table}<CR><++><Esc>?begin{table<Enter>"_i<Esc>
+
+autocmd FileType tex inoremap ;ltb \begin{longtable}{<++>}<CR>\caption[<++>]{<++>\label{tab:<++>}}\\ <CR>{<++>}<CR>\csvreader[<++>]{<++>}{}<CR>{<++>}<CR>\end{longtable}<CR><++><Esc>?begin{longta<Enter>"_i<Esc>
+
 
 " Insert equation environment 
 autocmd FileType tex inoremap ;eq \begin{equation}<CR><++><CR>\label{eqt:<++>}<CR>\end{equation}<CR><++><Esc>?begin<Enter>"_i<Esc>
@@ -234,6 +240,12 @@ autocmd FileType tex inoremap ;al \begin{equation}<CR><++><CR>\label{eqt:<++>}<C
 autocmd FileType tex inoremap ;ual \begin{align*}<CR><++><CR>\label{eqt:<++>}<CR>\end{align*}<CR><++><Esc>?begin<Enter>"_i<Esc>
 
 
+" Insert fraction command
+autocmd FileType tex inoremap ;f \frac{<++>}{<++>}<Esc>?frac<Enter>"_i<Esc>
+
+" Insert more spaced fraction command
+autocmd FileType tex inoremap ;ddf \ddfrac{<++>}{<++>}<Esc>?ddfrac<Enter>"_i<Esc>
+
 " Insert reference command
 autocmd FileType tex inoremap ;r \ref{<++>}<Space><++><Esc>?ref<Enter>"_i<Esc>
 
@@ -243,22 +255,15 @@ autocmd FileType tex inoremap ;si \SI{<++>}{<++>}<Space><++><Esc>?SI<Enter>"_i<E
 " Insert pagebreak command
 autocmd FileType tex inoremap ;pgb \pagebreak<CR><++><Esc>?pagebreak<Enter>"_i<Esc>
 
-" Insert fraction command
-autocmd FileType tex inoremap ;f \frac{<++>}{<++>}<Esc>?frac<Enter>"_i<Esc>
-
-" Insert more spaced fraction command
-autocmd FileType tex inoremap ;ddf \ddfrac{<++>}{<++>}<Esc>?ddfrac<Enter>"_i<Esc>
-
 " Insert no number command
 autocmd FileType tex inoremap ;nnu \nonumber<Esc>
 
-" Insert comment character
+" Insert comment character at the beginning of the line
 autocmd FileType tex nnoremap ;5 0i%<Esc>
 
-" Comments 260-264 are under review
 
 " Insert bold text command
-autocmd FileType tex inoremap ;b \bfseries{<++>}<Space><++><Esc>?bfseries<Enter>"_i<Esc>
+autocmd FileType tex inoremap ;b {\bfseries<Space><++>}<Space><++><Esc>?bfseries<Enter>"_i<Esc>
 
 " Insert italics text command
 autocmd FileType tex inoremap ;i \emph{<++>}<Space><++><Esc>?bfseries<Enter>"_i<Esc>
