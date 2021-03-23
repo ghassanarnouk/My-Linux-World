@@ -126,7 +126,7 @@ set ru
 " 0 (never)
 " 1 (status bar shows if there are more than 2 windows)
 " 2 always - DEFAULT
-set laststatus=0
+set laststatus=2
 
 " Stop continuation of comments on newline? You can toggle this by typing the command below
 " Alternative command :set formatoptions-=cro
@@ -141,6 +141,8 @@ set termguicolors
 " Set the + register (system clipboard) as the default? You can toggle this by typing the command below
 set clipboard=unnamedplus
 
+
+filetype on
 
 """ Unused commands but they are here just in case
 
@@ -222,7 +224,7 @@ autocmd FileType tex inoremap ;fg \begin{figure}[htbp]<CR>\begin{centering}<CR>\
 
 " Commands at lines 225 & 227 are under review
 
-autocmd FileType tex nnoremap ;tb \begin{table}[htbp]<CR>\centering<CR>\caption{<++>}<CR>\begin{tabular}{<++>}<CR><++><CR>\csvreader[<++>]{<++>}{}<CR>{<++>}<CR>\end{tabular}<CR>\label{tab:<++>}<CR>\end{table}<CR><++><Esc>?begin{table<Enter>"_i<Esc>
+autocmd FileType tex inoremap ;tb \begin{table}[htbp]<CR>\centering<CR>\caption{<++>}<CR>\begin{tabular}{<++>}<CR><++><CR>\csvreader[<++>]{<++>}{}<CR>{<++>}<CR>\end{tabular}<CR>\label{tab:<++>}<CR>\end{table}<CR><++><Esc>?begin{table<Enter>"_i<Esc>
 
 autocmd FileType tex inoremap ;ltb \begin{longtable}{<++>}<CR>\caption[<++>]{<++>\label{tab:<++>}}\\ <CR>{<++>}<CR>\csvreader[<++>]{<++>}{}<CR>{<++>}<CR>\end{longtable}<CR><++><Esc>?begin{longta<Enter>"_i<Esc>
 
@@ -231,10 +233,10 @@ autocmd FileType tex inoremap ;ltb \begin{longtable}{<++>}<CR>\caption[<++>]{<++
 autocmd FileType tex inoremap ;eq \begin{equation}<CR><++><CR>\label{eqt:<++>}<CR>\end{equation}<CR><++><Esc>?begin<Enter>"_i<Esc>
 
 " Insert an unnumbered equation environment
-autocmd FileType tex inoremap ;ueq \begin{align*}<CR><++><CR>\label{eqt:<++>}<CR>\end{align*}<CR><++><Esc>?begin<Enter>"_i<Esc>
+autocmd FileType tex inoremap ;ueq \begin{equation*}<CR><++><CR>\label{eqt:<++>}<CR>\end{equation*}<CR><++><Esc>?begin<Enter>"_i<Esc>
 
 " Insert align environment 
-autocmd FileType tex inoremap ;al \begin{equation}<CR><++><CR>\label{eqt:<++>}<CR>\end{equation}<CR><++><Esc>?begin<Enter>"_i<Esc>
+autocmd FileType tex inoremap ;al \begin{align}<CR><++><CR>\label{eqt:<++>}<CR>\end{align}<CR><++><Esc>?begin<Enter>"_i<Esc>
 
 " Insert an unnumbered align environment
 autocmd FileType tex inoremap ;ual \begin{align*}<CR><++><CR>\label{eqt:<++>}<CR>\end{align*}<CR><++><Esc>?begin<Enter>"_i<Esc>
@@ -254,6 +256,10 @@ autocmd FileType tex inoremap ;si \SI{<++>}{<++>}<Space><++><Esc>?SI<Enter>"_i<E
 
 " Insert pagebreak command
 autocmd FileType tex inoremap ;pgb \pagebreak<CR><++><Esc>?pagebreak<Enter>"_i<Esc>
+
+" Insert pagebreak command
+autocmd FileType tex inoremap ;cpg \clearpage<CR><++><Esc>?pagebreak<Enter>"_i<Esc>
+
 
 " Insert no number command
 autocmd FileType tex inoremap ;nnu \nonumber<Esc>
@@ -276,7 +282,7 @@ autocmd FileType tex inoremap ;u \underline{<++>}<Space><++><Esc>?bfseries<Enter
 autocmd FileType tex inoremap ;s \section{<++>}<CR>\label{sct:<++>}<CR><++><Esc>?section<Enter>"_i<Esc>
 
 " Insert unnumbered section environment
-autocmd FileType tex inoremap ;us \section{<++>}<CR>\label{sct:<++>}<CR><++><Esc>?section<Enter>"_i<Esc>
+autocmd FileType tex inoremap ;us \section*{<++>}<CR>\label{sct:<++>}<CR><++><Esc>?section<Enter>"_i<Esc>
 
 " Insert subsection environment
 autocmd FileType tex inoremap ;ss \subsection{<++>}<CR>\label{ssct:<++>}<CR><++><Esc>?section<Enter>"_i<Esc>
@@ -285,14 +291,14 @@ autocmd FileType tex inoremap ;ss \subsection{<++>}<CR>\label{ssct:<++>}<CR><++>
 autocmd FileType tex inoremap ;uss \subsection*{<++>}<CR>\label{ssct:<++>}<CR><++><Esc>?section<Enter>"_i<Esc>
 
 " Insert subsubsection environment
-autocmd FileType tex inoremap ;sss \subsubsection*{<++>}<CR>\label{ssct:<++>}<CR><++><Esc>?section<Enter>"_i<Esc>
+autocmd FileType tex inoremap ;sss \subsubsection{<++>}<CR>\label{ssct:<++>}<CR><++><Esc>?section<Enter>"_i<Esc>
 
 " Insert unnumbered subsubsection environment
 autocmd FileType tex inoremap ;usss \subsubsection*{<++>}<CR>\label{ssct:<++>}<CR><++><Esc>?section<Enter>"_i<Esc>
 
 
-
-
+" Insert new glossary environment
+autocmd FileType tex inoremap ;gls \newglossaryentry{<++>}<CR>{<CR>name={<++>},<CR>description={<++>}<CR>}<CR><++><Esc>?newglossaryentry<Enter>"_i<Esc>
 
 
 

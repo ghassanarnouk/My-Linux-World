@@ -6,7 +6,7 @@ One Paragraph of project objective goes here
 
 1. [Ranger](/ranger)
 2. [Nvim](/nvim)
-3. [Section 3]()
+3. [Zsh]()
 4. [Section 4]()
 
 ## Prerequisites
