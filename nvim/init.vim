@@ -126,11 +126,11 @@ set ru
 " 0 (never)
 " 1 (status bar shows if there are more than 2 windows)
 " 2 always - DEFAULT
-set laststatus=2
+set laststatus=0
 
 " Stop continuation of comments on newline? You can toggle this by typing the command below
 " Alternative command :set formatoptions-=cro
-" set fo-=cro
+set fo-=cro
 
 " Prevent having misspelled words? You can toggle this by typing the command below 
 set spell spelllang=en_us
@@ -140,6 +140,17 @@ set termguicolors
 
 " Set the + register (system clipboard) as the default? You can toggle this by typing the command below
 set clipboard=unnamedplus
+
+" Avoid all the hit-enter prompts caused by file messages? You can toggle this by typing the command below
+" See `:h shm` for flag options.
+" Alternative command :set shortmess+=flmnrw
+set shm+=flmnrw
+
+" [In Progress]
+" k - scan the files given with the 'directory' option
+" set complete+=k
+
+
 
 
 filetype on
@@ -179,6 +190,7 @@ endfunction
 
 " Note that in vim, p is used to paste before the cursor while P is after
 " To cancel the highlight of searched items :noh
+" <C-p> in insert mode displays the auto-complete menu
 
 """""""""""""""""""""""""""""""""""""GENERAL""""""""""""""""""""""""""""""""""""""""""""
 
@@ -196,7 +208,7 @@ nnoremap <F3> :set rnu!<CR>
 nnoremap <F4> :set spell!<CR>
 
 " Toggle off the search highlight
-" nnoremap <F7> :set noh!<CR>
+nnoremap <F7> :set hlsearch!<CR>
 
 " Documentation [In Progress]
 nnoremap <Tab> :tabNext<CR>
@@ -213,93 +225,200 @@ inoremap <silent> <leader><Space><Space> <Esc>/<++><Enter>"_c4l
 vnoremap <C-c> "*y :let @+=@*<CR>
 map <C-v> "+p
 
+" Select all text and copy it
+nnoremap <C-a> gg<S-v><S-g>y
+
 
 """""""""""""""""""""""""""""""""""""""TEX""""""""""""""""""""""""""""""""""""""""""""""
 
-" Insert begin environment
-autocmd FileType tex inoremap ;bg \begin{<++>}<CR><++><CR>\end{<++>}<CR><++><Esc>?begin<Enter>"_i<Esc>
-
-" Insert figure environment
-autocmd FileType tex inoremap ;fg \begin{figure}[htbp]<CR>\begin{centering}<CR>\includegraphics[<++>]{<++>}<CR>\captionof{figure}{<++>}<CR>\label{fig:<++>}<CR>\end{centering}<CR>\end{figure}<CR><++><Esc>?begin{figure}<Enter>"_i<Esc>
-
-" Commands at lines 225 & 227 are under review
-
-autocmd FileType tex inoremap ;tb \begin{table}[htbp]<CR>\centering<CR>\caption{<++>}<CR>\begin{tabular}{<++>}<CR><++><CR>\csvreader[<++>]{<++>}{}<CR>{<++>}<CR>\end{tabular}<CR>\label{tab:<++>}<CR>\end{table}<CR><++><Esc>?begin{table<Enter>"_i<Esc>
-
-autocmd FileType tex inoremap ;ltb \begin{longtable}{<++>}<CR>\caption[<++>]{<++>\label{tab:<++>}}\\ <CR>{<++>}<CR>\csvreader[<++>]{<++>}{}<CR>{<++>}<CR>\end{longtable}<CR><++><Esc>?begin{longta<Enter>"_i<Esc>
-
-
-" Insert equation environment 
-autocmd FileType tex inoremap ;eq \begin{equation}<CR><++><CR>\label{eqt:<++>}<CR>\end{equation}<CR><++><Esc>?begin<Enter>"_i<Esc>
-
-" Insert an unnumbered equation environment
-autocmd FileType tex inoremap ;ueq \begin{equation*}<CR><++><CR>\label{eqt:<++>}<CR>\end{equation*}<CR><++><Esc>?begin<Enter>"_i<Esc>
-
-" Insert align environment 
-autocmd FileType tex inoremap ;al \begin{align}<CR><++><CR>\label{eqt:<++>}<CR>\end{align}<CR><++><Esc>?begin<Enter>"_i<Esc>
-
-" Insert an unnumbered align environment
-autocmd FileType tex inoremap ;ual \begin{align*}<CR><++><CR>\label{eqt:<++>}<CR>\end{align*}<CR><++><Esc>?begin<Enter>"_i<Esc>
-
-
-" Insert fraction command
-autocmd FileType tex inoremap ;f \frac{<++>}{<++>}<Esc>?frac<Enter>"_i<Esc>
-
-" Insert more spaced fraction command
-autocmd FileType tex inoremap ;ddf \ddfrac{<++>}{<++>}<Esc>?ddfrac<Enter>"_i<Esc>
-
-" Insert reference command
-autocmd FileType tex inoremap ;r \ref{<++>}<Space><++><Esc>?ref<Enter>"_i<Esc>
-
-" Insert SI units command
-autocmd FileType tex inoremap ;si \SI{<++>}{<++>}<Space><++><Esc>?SI<Enter>"_i<Esc>
-
-" Insert pagebreak command
-autocmd FileType tex inoremap ;pgb \pagebreak<CR><++><Esc>?pagebreak<Enter>"_i<Esc>
-
-" Insert pagebreak command
-autocmd FileType tex inoremap ;cpg \clearpage<CR><++><Esc>?pagebreak<Enter>"_i<Esc>
-
-
-" Insert no number command
-autocmd FileType tex inoremap ;nnu \nonumber<Esc>
+"" Others
 
 " Insert comment character at the beginning of the line
-autocmd FileType tex nnoremap ;5 0i%<Esc>
+autocmd FileType tex nnoremap <Leader>5 0i%<Esc>
 
+" Insert begin environment
+autocmd FileType tex inoremap <Leader>bg \begin{<++>}<CR><++><CR>\end{<++>}<CR><++><Esc>?begin<Enter>"_i<Esc>
+
+
+
+"" Appendices
+
+" Insert appendices environment
+" \addappheadtotoc: adds the title Appendices in toc
+autocmd FileType tex inoremap <Leader>app \addappheadtotoc<CR>\begin{appendices}<CR>\section{<++>}<CR>\label{sct:<++>}<CR><++><CR>\end{appendices}<CR><++><Esc>?section<Enter>"_i<Esc>
+
+
+
+"" Figures
+
+" Insert figure environment
+autocmd FileType tex inoremap <Leader>fg \begin{figure}[htbp]<CR>\begin{centering}<CR>\includegraphics[<++>]{<++>}<CR>\captionof{figure}{<++>}<CR>\label{fig:<++>}<CR>\end{centering}<CR>\end{figure}<CR><++><Esc>?begin{figure}<Enter>"_i<Esc>
+
+
+
+"" Tables
+
+" Table commands are under review
+autocmd FileType tex inoremap <Leader>tb \begin{table}[htbp]<CR>\centering<CR>\caption{<++>}<CR>\begin{tabular}{<++>}<CR><++><CR>\csvreader[<++>]{<++>}{}<CR>{<++>}<CR>\end{tabular}<CR>\label{tab:<++>}<CR>\end{table}<CR><++><Esc>?begin{table<Enter>"_i<Esc>
+
+autocmd FileType tex inoremap <Leader>ltb \begin{longtable}{<++>}<CR>\caption[<++>]{<++>\label{tab:<++>}}\\ <CR>{<++>}<CR>\csvreader[<++>]{<++>}{}<CR>{<++>}<CR>\end{longtable}<CR><++><Esc>?begin{longta<Enter>"_i<Esc>
+
+
+
+"" Equations
+
+" Insert no number command
+autocmd FileType tex inoremap <Leader>nnu \nonumber<Esc>
+
+" Insert equation environment 
+autocmd FileType tex inoremap <Leader>eq \begin{equation}<CR><++><CR>\label{eqt:<++>}<CR>\end{equation}<CR><++><Esc>?begin<Enter>"_i<Esc>
+
+" Insert an unnumbered equation environment
+autocmd FileType tex inoremap <Leader>ueq \begin{equation*}<CR><++><CR>\label{eqt:<++>}<CR>\end{equation*}<CR><++><Esc>?begin<Enter>"_i<Esc>
+
+" Insert subequation environment
+autocmd FileType tex inoremap <Leader>seq \begin{subequation}<CR>\begin{align}<CR>\label{eqt:<++>}<CR><++><CR>\end{align}<CR>\end{subequation}<CR><++><Esc>?begin<Enter>"_i<Esc>
+
+" Insert align environment 
+autocmd FileType tex inoremap <Leader>al \begin{align}<CR><++><CR>\label{eqt:<++>}<CR>\end{align}<CR><++><Esc>?begin<Enter>"_i<Esc>
+
+" Insert an unnumbered align environment
+autocmd FileType tex inoremap <Leader>ual \begin{align*}<CR><++><CR>\label{eqt:<++>}<CR>\end{align*}<CR><++><Esc>?begin<Enter>"_i<Esc>
+
+
+
+"" Mathematics 
+
+" Insert SI units command
+autocmd FileType tex inoremap <Leader>si \SI{<++>}{<++>}<Space><++><Esc>?SI<Enter>"_i<Esc>
+
+" Insert fraction command
+autocmd FileType tex inoremap <Leader>f \frac{<++>}{<++>}<Esc>?frac<Enter>"_i<Esc>
+
+" Insert more spaced fraction command
+autocmd FileType tex inoremap <Leader>ddf \ddfrac{<++>}{<++>}<Esc>?ddfrac<Enter>"_i<Esc>
+
+
+
+"" Page Break
+
+" Insert pagebreak command
+" \pagebreak: forces a new page
+autocmd FileType tex inoremap <Leader>pgb \pagebreak<CR><++><Esc>?pagebreak<Enter>"_i<Esc>
+
+" Insert pagebreak command
+" \clearpage: ends a page, and puts pending tables and figures on separate
+" float pages with no text
+autocmd FileType tex inoremap <Leader>cpg \clearpage<CR><++><Esc>?pagebreak<Enter>"_i<Esc>
+
+
+
+"" Reference
+
+" Insert reference command
+autocmd FileType tex inoremap <Leader>r \ref{<++>}<Space><++><Esc>?ref<Enter>"_i<Esc>
+
+" Insert hyperref command
+autocmd FileType tex inoremap <Leader>hr \hyperref[<++>:<++>]{<++>}<Space><++><Esc>?hyperref<Enter>"_i<Esc>
+
+
+
+"" Bold, Italics, and Underline
 
 " Insert bold text command
-autocmd FileType tex inoremap ;b {\bfseries<Space><++>}<Space><++><Esc>?bfseries<Enter>"_i<Esc>
+autocmd FileType tex inoremap <Leader>b {\bfseries<Space><++>}<Space><++><Esc>?bfseries<Enter>"_i<Esc>
 
 " Insert italics text command
-autocmd FileType tex inoremap ;i \emph{<++>}<Space><++><Esc>?bfseries<Enter>"_i<Esc>
+autocmd FileType tex inoremap <Leader>i \emph{<++>}<Space><++><Esc>?bfseries<Enter>"_i<Esc>
 
 " Insert underline text command
-autocmd FileType tex inoremap ;u \underline{<++>}<Space><++><Esc>?bfseries<Enter>"_i<Esc>
+autocmd FileType tex inoremap <Leader>u \underline{<++>}<Space><++><Esc>?bfseries<Enter>"_i<Esc>
 
+
+
+"" Sections, Subsection, and Subsubsection
 
 " Insert section environment
-autocmd FileType tex inoremap ;s \section{<++>}<CR>\label{sct:<++>}<CR><++><Esc>?section<Enter>"_i<Esc>
+autocmd FileType tex inoremap <Leader>s \section{<++>}<CR>\label{sct:<++>}<CR><++><Esc>?section<Enter>"_i<Esc>
 
 " Insert unnumbered section environment
-autocmd FileType tex inoremap ;us \section*{<++>}<CR>\label{sct:<++>}<CR><++><Esc>?section<Enter>"_i<Esc>
+autocmd FileType tex inoremap <Leader>us \section*{<++>}<CR>\label{sct:<++>}<CR><++><Esc>?section<Enter>"_i<Esc>
 
 " Insert subsection environment
-autocmd FileType tex inoremap ;ss \subsection{<++>}<CR>\label{ssct:<++>}<CR><++><Esc>?section<Enter>"_i<Esc>
+autocmd FileType tex inoremap <Leader>ss \subsection{<++>}<CR>\label{ssct:<++>}<CR><++><Esc>?section<Enter>"_i<Esc>
 
 " Insert unnumbered subsection environment
-autocmd FileType tex inoremap ;uss \subsection*{<++>}<CR>\label{ssct:<++>}<CR><++><Esc>?section<Enter>"_i<Esc>
+autocmd FileType tex inoremap <Leader>uss \subsection*{<++>}<CR>\label{ssct:<++>}<CR><++><Esc>?section<Enter>"_i<Esc>
 
 " Insert subsubsection environment
-autocmd FileType tex inoremap ;sss \subsubsection{<++>}<CR>\label{ssct:<++>}<CR><++><Esc>?section<Enter>"_i<Esc>
+autocmd FileType tex inoremap <Leader>sss \subsubsection{<++>}<CR>\label{ssct:<++>}<CR><++><Esc>?section<Enter>"_i<Esc>
 
 " Insert unnumbered subsubsection environment
-autocmd FileType tex inoremap ;usss \subsubsection*{<++>}<CR>\label{ssct:<++>}<CR><++><Esc>?section<Enter>"_i<Esc>
+autocmd FileType tex inoremap <Leader>usss \subsubsection*{<++>}<CR>\label{ssct:<++>}<CR><++><Esc>?section<Enter>"_i<Esc>
 
+
+
+"" Markdown
+
+" Insert markdownInput command
+autocmd FileType tex inoremap <Leader>mdi \markdownInput{<++>.md}<CR><++><Esc>?markdownInput<Enter>"_i<Esc>
+
+" Insert markdown environment
+autocmd FileType tex inoremap <Leader>md \begin{markdown}<CR><++><CR>\end{markdown}<CR><++><Esc>?markdown<Enter>"_i<Esc>
+
+
+
+"" Font Sizes
+
+" Insert tiny command
+autocmd FileType tex inoremap <Leader>t {\tiny<Space><++>}<Space><++><Esc>?tiny<Enter>"_i<Esc>
+
+" Insert scriptsize command
+autocmd FileType tex inoremap <Leader>ssi {\scriptsize<Space><++>}<Space><++><Esc>?scriptsize<Enter>"_i<Esc>
+
+" Insert footnotesize command
+autocmd FileType tex inoremap <Leader>fns {\footnotesize<Space><++>}<Space><++><Esc>?footnotesize<Enter>"_i<Esc>
+
+" Insert small command
+autocmd FileType tex inoremap <Leader>sm {\small<Space><++>}<Space><++><Esc>?small<Enter>"_i<Esc>
+
+" Insert normalsize command
+autocmd FileType tex inoremap <Leader>ns {\normalsize<Space><++>}<Space><++><Esc>?normalsize<Enter>"_i<Esc>
+
+" Insert large command
+autocmd FileType tex inoremap <Leader>la {\large<Space><++>}<Space><++><Esc>?large<Enter>"_i<Esc>
+
+" Insert Large command
+autocmd FileType tex inoremap <Leader>La {\Large<Space><++>}<Space><++><Esc>?Large<Enter>"_i<Esc>
+
+" Insert LARGE command
+autocmd FileType tex inoremap <Leader>LA {\LARGE<Space><++>}<Space><++><Esc>?LARGE<Enter>"_i<Esc>
+
+" Insert huge command
+autocmd FileType tex inoremap <Leader>hu {\huge<Space><++>}<Space><++><Esc>?huge<Enter>"_i<Esc>
+
+" Insert HUGE command
+autocmd FileType tex inoremap <Leader>Hu {\huge<Space><++>}<Space><++><Esc>?huge<Enter>"_i<Esc>
+
+
+
+"" Glossaries
 
 " Insert new glossary environment
-autocmd FileType tex inoremap ;gls \newglossaryentry{<++>}<CR>{<CR>name={<++>},<CR>description={<++>}<CR>}<CR><++><Esc>?newglossaryentry<Enter>"_i<Esc>
+autocmd FileType tex inoremap <Leader>gls \newglossaryentry{<++>}<CR>{<CR>name={<++>},<CR>description={<++>}<CR>}<CR><++><Esc>?newglossaryentry<Enter>"_i<Esc>
+
+" Insert new acronym environment
+autocmd FileType tex inoremap <Leader>acr \newglossaryentry{<++>}<CR>{<CR>type=\acronymtype,<CR>name={<++>},<CR>description={<++>},<CR>first={<++>}<CR>}<++><Esc>?newglossaryentry<Enter>"_i<Esc>
+" autocmd FileType tex inoremap ;acr \newglossaryentry{<++>}<CR>{<CR>type=\acronymtype,<CR>name={<++>},<CR>description={<++>},<CR>first={\glsentrydesc{<++>} (\glsentrytext{<++>})},<CR>plural={<++>},<CR>firstplural={\glsentrydescplural{<++>} (\glsentryplural{<++>})}<CR>}<CR><++><Esc>?newglossaryentry<Enter>"_i<Esc>
 
 
 
 
+
+
+
+"""""""""""""""""""""""""""""""""""""""BASH"""""""""""""""""""""""""""""""""""""""""""""
+
+autocmd FileType sh inoremap <leader>if if<Space>[[<Space>$?<Space>-ne<Space>0<Space>]];<Space>then<CR>echo<Space>'Failed<Space>to<Space><++>'<CR>exit<Space>1<CR>fi<Esc>?Failed<Enter>"_i<Esc>
+
+autocmd FileType sh inoremap <leader>oc #<Space>Checking<Space>if<Space><++><CR>operationCheck<Space>$?<Space>"Failed<Space>to<Space><++>."<Esc>?Checking<Enter>"_i<Esc>
