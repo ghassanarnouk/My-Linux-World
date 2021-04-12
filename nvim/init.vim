@@ -241,6 +241,19 @@ autocmd FileType tex inoremap <Leader>bg \begin{<++>}<CR><++><CR>\end{<++>}<CR><
 
 
 
+"" Comments
+
+" Insert comment command
+autocmd FileType tex inoremap <Leader>c \comment
+
+" Insert endcomment command
+autocmd FileType tex inoremap <Leader>ec \endcomment
+
+" Insert comment environment
+autocmd FileType tex inoremap <Leader>cc \begin{comment}<CR><++><CR>\end{comment}<CR><++><Esc>?comment<Enter>"_i<Esc>
+
+
+
 "" Appendices
 
 " Insert appendices environment
