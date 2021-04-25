@@ -146,12 +146,18 @@ set clipboard=unnamedplus
 " Alternative command :set shortmess+=flmnrw
 set shm+=flmnrw
 
-" [In Progress]
-" k - scan the files given with the 'directory' option
-" set complete+=k
+" Enable auto-completion using C-p & C-N? You can toggle this by typing the command below
+set complete+=k
 
+" Highlight the screen line of the cursor? You can toggle this by typing the
+" command below
+" Alternative command :set cursorline
+set cul
 
-
+" Highlight the screen column of the cursor? You can toggle this by typing the
+" command below
+" Alternative command :set cursorcolumn
+" set cuc
 
 filetype on
 
@@ -210,6 +216,9 @@ nnoremap <F4> :set spell!<CR>
 " Toggle off the search highlight
 nnoremap <F7> :set hlsearch!<CR>
 
+" Toggle off the cursor line highlight
+nnoremap <F8> :set cul!<CR>
+
 " Documentation [In Progress]
 nnoremap <Tab> :tabNext<CR>
 noremap <C-n> :tabnew 
@@ -241,16 +250,16 @@ autocmd FileType tex inoremap <Leader>bg \begin{<++>}<CR><++><CR>\end{<++>}<CR><
 
 
 
-"" Comments
+"" Comments [In Progress]
 
 " Insert comment command
-autocmd FileType tex inoremap <Leader>c \comment
+" autocmd FileType tex inoremap <Leader>c \comment
 
 " Insert endcomment command
-autocmd FileType tex inoremap <Leader>ec \endcomment
+" autocmd FileType tex inoremap <Leader>ec \endcomment
 
 " Insert comment environment
-autocmd FileType tex inoremap <Leader>cc \begin{comment}<CR><++><CR>\end{comment}<CR><++><Esc>?comment<Enter>"_i<Esc>
+" autocmd FileType tex inoremap <Leader>cc \begin{comment}<CR><++><CR>\end{comment}<CR><++><Esc>?begin<Enter>"_i<Esc>
 
 
 
@@ -265,7 +274,7 @@ autocmd FileType tex inoremap <Leader>app \addappheadtotoc<CR>\begin{appendices}
 "" Figures
 
 " Insert figure environment
-autocmd FileType tex inoremap <Leader>fg \begin{figure}[htbp]<CR>\begin{centering}<CR>\includegraphics[<++>]{<++>}<CR>\captionof{figure}{<++>}<CR>\label{fig:<++>}<CR>\end{centering}<CR>\end{figure}<CR><++><Esc>?begin{figure}<Enter>"_i<Esc>
+autocmd FileType tex inoremap <Leader>fg \begin{figure}[htbp]<CR>\label{fig:<++>}<CR>\begin{centering}<CR>\includegraphics[width=<++>\linewidth]{<++>.png}<CR>\captionof{figure}{<++>}<CR>\end{centering}<CR>\end{figure}<CR><++><Esc>?begin{figure}<Enter>"_i<Esc>
 
 
 
@@ -275,6 +284,22 @@ autocmd FileType tex inoremap <Leader>fg \begin{figure}[htbp]<CR>\begin{centerin
 autocmd FileType tex inoremap <Leader>tb \begin{table}[htbp]<CR>\centering<CR>\caption{<++>}<CR>\begin{tabular}{<++>}<CR><++><CR>\csvreader[<++>]{<++>}{}<CR>{<++>}<CR>\end{tabular}<CR>\label{tab:<++>}<CR>\end{table}<CR><++><Esc>?begin{table<Enter>"_i<Esc>
 
 autocmd FileType tex inoremap <Leader>ltb \begin{longtable}{<++>}<CR>\caption[<++>]{<++>\label{tab:<++>}}\\ <CR>{<++>}<CR>\csvreader[<++>]{<++>}{}<CR>{<++>}<CR>\end{longtable}<CR><++><Esc>?begin{longta<Enter>"_i<Esc>
+
+
+
+"" Lists
+
+" Insert item command
+autocmd FileType tex inoremap <Leader>it \item<Space><++><CR><++><Esc>?item<Enter>"_i<Esc>
+
+" Insert itemize environment
+autocmd FileType tex inoremap <Leader>item \begin{itemize}<CR>\item<Space><++><CR>\item<Space><++><CR>\end{itemize}<Esc>?begin{itemize}<Enter>"_i<Esc>
+
+" Insert enumerate environment
+autocmd FileType tex inoremap <Leader>enu \begin{enumerate}<CR>\item<Space><++><CR>\item<Space><++><CR>\end{enumerate}<Esc>?begin{enumerate}<Enter>"_i<Esc>
+
+" Insert description environment
+autocmd FileType tex inoremap <Leader>des \begin{description}<CR>\item<Space><++><CR>\item<Space><++><CR>\end{description}<Esc>?begin{description}<Enter>"_i<Esc>
 
 
 
@@ -313,16 +338,32 @@ autocmd FileType tex inoremap <Leader>ddf \ddfrac{<++>}{<++>}<Esc>?ddfrac<Enter>
 
 
 
+" Cancels 
+
+" Insert cancel command
+autocmd FileType tex inoremap <Leader>can \cancel{<++>}<Esc>?cancel<Enter>"_i<Esc>
+
+" Insert cancel command
+autocmd FileType tex inoremap <Leader>bcan \bcancel{<++>}<Esc>?bcancel<Enter>"_i<Esc>
+
+" Insert cancel command
+autocmd FileType tex inoremap <Leader>xcan \xcancel{<++>}<Esc>?xcancel<Enter>"_i<Esc>
+
+" Insert cancel command
+autocmd FileType tex inoremap <Leader>cant \cancelto{<++>}{<++>}<Esc>?cancelto<Enter>"_i<Esc>
+
+
+
 "" Page Break
 
 " Insert pagebreak command
 " \pagebreak: forces a new page
-autocmd FileType tex inoremap <Leader>pgb \pagebreak<CR><++><Esc>?pagebreak<Enter>"_i<Esc>
+autocmd FileType tex inoremap <Leader>pgb \pagebreak<CR><CR><++><Esc>?pagebreak<Enter>"_i<Esc>
 
 " Insert pagebreak command
 " \clearpage: ends a page, and puts pending tables and figures on separate
 " float pages with no text
-autocmd FileType tex inoremap <Leader>cpg \clearpage<CR><++><Esc>?pagebreak<Enter>"_i<Esc>
+autocmd FileType tex inoremap <Leader>cpg \clearpage<CR><CR><++><Esc>?clearpage<Enter>"_i<Esc>
 
 
 
@@ -342,33 +383,39 @@ autocmd FileType tex inoremap <Leader>hr \hyperref[<++>:<++>]{<++>}<Space><++><E
 autocmd FileType tex inoremap <Leader>b {\bfseries<Space><++>}<Space><++><Esc>?bfseries<Enter>"_i<Esc>
 
 " Insert italics text command
-autocmd FileType tex inoremap <Leader>i \emph{<++>}<Space><++><Esc>?bfseries<Enter>"_i<Esc>
+autocmd FileType tex inoremap <Leader>i \emph{<++>}<Space><++><Esc>?emph<Enter>"_i<Esc>
 
 " Insert underline text command
-autocmd FileType tex inoremap <Leader>u \underline{<++>}<Space><++><Esc>?bfseries<Enter>"_i<Esc>
+autocmd FileType tex inoremap <Leader>u \underline{<++>}<Space><++><Esc>?underline<Enter>"_i<Esc>
 
 
 
 "" Sections, Subsection, and Subsubsection
 
 " Insert section environment
-autocmd FileType tex inoremap <Leader>s \section{<++>}<CR>\label{sct:<++>}<CR><++><Esc>?section<Enter>"_i<Esc>
+autocmd FileType tex inoremap <Leader>s \section{<++>}<CR>\label{sct:<++>}<CR><++><CR>\clearpage<Esc>?section<Enter>"_i<Esc>
 
 " Insert unnumbered section environment
-autocmd FileType tex inoremap <Leader>us \section*{<++>}<CR>\label{sct:<++>}<CR><++><Esc>?section<Enter>"_i<Esc>
+autocmd FileType tex inoremap <Leader>us \section*{<++>}<CR>\label{sct:<++>}<CR><++><CR>\clearpage<Esc>?section<Enter>"_i<Esc>
 
 " Insert subsection environment
-autocmd FileType tex inoremap <Leader>ss \subsection{<++>}<CR>\label{ssct:<++>}<CR><++><Esc>?section<Enter>"_i<Esc>
+autocmd FileType tex inoremap <Leader>ss \subsection{<++>}<CR>\label{ssct:<++>}<CR><++><CR>\clearpage<Esc>?section<Enter>"_i<Esc>
 
 " Insert unnumbered subsection environment
-autocmd FileType tex inoremap <Leader>uss \subsection*{<++>}<CR>\label{ssct:<++>}<CR><++><Esc>?section<Enter>"_i<Esc>
+autocmd FileType tex inoremap <Leader>uss \subsection*{<++>}<CR>\label{ssct:<++>}<CR><++><CR>\clearpage<Esc>?section<Enter>"_i<Esc>
 
 " Insert subsubsection environment
-autocmd FileType tex inoremap <Leader>sss \subsubsection{<++>}<CR>\label{ssct:<++>}<CR><++><Esc>?section<Enter>"_i<Esc>
+autocmd FileType tex inoremap <Leader>sss \subsubsection{<++>}<CR>\label{ssct:<++>}<CR><++><CR>\clearpage<Esc>?section<Enter>"_i<Esc>
 
 " Insert unnumbered subsubsection environment
-autocmd FileType tex inoremap <Leader>usss \subsubsection*{<++>}<CR>\label{ssct:<++>}<CR><++><Esc>?section<Enter>"_i<Esc>
+autocmd FileType tex inoremap <Leader>usss \subsubsection*{<++>}<CR>\label{ssct:<++>}<CR><++><CR>\clearpage<Esc>?section<Enter>"_i<Esc>
 
+
+
+"" Codes
+
+" [language={[LaTeX]TeX}]
+autocmd FileType tex inoremap <Leader>lst \begin{lstlisting}[language=<++>, caption={<++>}, captionpos=b, label={lst:<++>}]<CR><++><CR>\end{lstlisting}<Esc>?begin{lstlisting}<Enter>"_i<Esc>
 
 
 "" Markdown
@@ -411,17 +458,20 @@ autocmd FileType tex inoremap <Leader>LA {\LARGE<Space><++>}<Space><++><Esc>?LAR
 autocmd FileType tex inoremap <Leader>hu {\huge<Space><++>}<Space><++><Esc>?huge<Enter>"_i<Esc>
 
 " Insert HUGE command
-autocmd FileType tex inoremap <Leader>Hu {\huge<Space><++>}<Space><++><Esc>?huge<Enter>"_i<Esc>
+autocmd FileType tex inoremap <Leader>Hu {\Huge<Space><++>}<Space><++><Esc>?Huge<Enter>"_i<Esc>
 
 
 
 "" Glossaries
 
+" Insert gls command
+autocmd FileType tex inoremap <Leader>g \gls{<++>}<Space><++><Esc>?gls<Enter>"_i<Esc>
+
 " Insert new glossary environment
-autocmd FileType tex inoremap <Leader>gls \newglossaryentry{<++>}<CR>{<CR>name={<++>},<CR>description={<++>}<CR>}<CR><++><Esc>?newglossaryentry<Enter>"_i<Esc>
+ autocmd FileType tex inoremap <Leader>gls \newglossaryentry{<++>}<CR>{<CR>name={<++>},<CR>description={<++>}<CR>}<CR><++><Esc>?newglossaryentry<Enter>"_i<Esc>
 
 " Insert new acronym environment
-autocmd FileType tex inoremap <Leader>acr \newglossaryentry{<++>}<CR>{<CR>type=\acronymtype,<CR>name={<++>},<CR>description={<++>},<CR>first={<++>}<CR>}<++><Esc>?newglossaryentry<Enter>"_i<Esc>
+autocmd FileType tex inoremap <Leader>acr \newglossaryentry{<++>}<CR>{<CR>type=\acronymtype,<CR>name={<++>},<CR>description={<++>},<CR>first={<++>}<CR>}<CR><++><Esc>?newglossaryentry<Enter>"_i<Esc>
 " autocmd FileType tex inoremap ;acr \newglossaryentry{<++>}<CR>{<CR>type=\acronymtype,<CR>name={<++>},<CR>description={<++>},<CR>first={\glsentrydesc{<++>} (\glsentrytext{<++>})},<CR>plural={<++>},<CR>firstplural={\glsentrydescplural{<++>} (\glsentryplural{<++>})}<CR>}<CR><++><Esc>?newglossaryentry<Enter>"_i<Esc>
 
 
