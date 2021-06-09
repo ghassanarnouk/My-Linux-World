@@ -4,7 +4,7 @@ The scripts are developed and designed to autmoate redundant tasks and improve t
 
 ## Table of contents
 
-1. [Nvim Configuration](/My-Linux-World/blob/main/scripts/cpvc.sh)
+1. [Nvim Configuration](https://github.com/ghassanarnouk/My-Linux-World/blob/main/scripts/cpvc.sh)
 2. [Section 2]()
 3. [Section 3]()
 4. [Section 4]()
@@ -20,7 +20,6 @@ Assuming you have cloned the scripts to your local machine, one of the following
 Command 1: ```./cpvc.sh```
 
 Command 2: ```sh cpvc.sh```
-
 
 ## Contributing
 

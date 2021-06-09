@@ -7,7 +7,7 @@ One Paragraph of project objective goes here
 1. [Ranger](/ranger)
 2. [Nvim](/nvim)
 3. [Zsh]()
-4. [Bash Scripts]()
+4. [Scripts](/scripts)
 
 ## Prerequisites
 
