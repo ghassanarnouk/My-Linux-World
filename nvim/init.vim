@@ -234,7 +234,7 @@ inoremap <silent> <leader><Space><Space> <Esc>/<++><Enter>"_c4l
 vnoremap <C-c> "*y :let @+=@*<CR>
 map <C-v> "+p
 
-" Select all text and copy it
+" Select all text in buffer and copy it
 nnoremap <C-a> gg<S-v><S-g>y
 
 
@@ -415,7 +415,7 @@ autocmd FileType tex inoremap <Leader>usss \subsubsection*{<++>}<CR>\label{ssct:
 "" Codes
 
 " [language={[LaTeX]TeX}]
-autocmd FileType tex inoremap <Leader>lst \begin{lstlisting}[language=<++>, caption={<++>}, captionpos=b, label={lst:<++>}]<CR><++><CR>\end{lstlisting}<Esc>?begin{lstlisting}<Enter>"_i<Esc>
+autocmd FileType tex inoremap <Leader>lst \begin{lstlisting}[language={<++>}, caption={<++>}, captionpos=b, label={lst:<++>}]<CR><++><CR>\end{lstlisting}<Esc>?begin{lstlisting}<Enter>"_i<Esc>
 
 
 "" Markdown
