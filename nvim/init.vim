@@ -14,6 +14,11 @@ call plug#begin( '~/local/share/nvim/plugged')
 
 " https://github.com/bluz71/vim-nightfly-guicolors
 Plug 'bluz71/vim-nightfly-guicolors'
+" https://github.com/liuchengxu/vim-which-key
+Plug 'liuchengxu/vim-which-key'
+Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
+" https://github.com/junegunn/goyo.vim
+Plug 'junegunn/goyo.vim'
 
 call plug#end()
 
@@ -24,7 +29,7 @@ call plug#end()
 colorscheme nightfly
 
 " Setting 24-bit true colors and the nightfly theme
-set termguicolors
+set termguicolors 
 
 " Underline matching parentheses? You can toggle this by typing the command
 " below
@@ -35,6 +40,21 @@ let g:nightflyCursorColor=1
 
 " Prefer unitalicized comments? You can toggle this by uncommenting the command below 
 " let g:nightflyItalics=0
+
+
+"""""""""""""""""""""""""""""""""""""""WhichKey-Plugin""""""""""""""""""""""""""""""""""
+nnoremap <silent> <leader> :WhichKey ';'<CR>
+
+" call which_key#register('<Space>', "g:which_key_map")
+let g:mapleader=";"
+let g:maplocalleader="."
+
+nnoremap <silent> <leader> :<c-u>WhichKey ';'<CR>
+vnoremap <silent> <localleader> :<c-u>WhichKey ','<CR>
+
+
+"""""""""""""""""""""""""""""""""""""""Nightfly-Plugin""""""""""""""""""""""""""""""""""
+map <localleader><tab> :Goyo \| set linebreak<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -92,8 +112,8 @@ set wrap linebreak
 " Prevent Vim from automatically inserting line breaks in newly entered text? You can toggle
 " this by typing the command below
 " Alternative commands :set textwidth=0 & :set wrapmargin=0
-set wm=0
 set tw=0
+set wm=0
 
 " Prefer cursor to be centered with scroll off? You can toggle this by typing
 " the command below and setting it to a very large number
@@ -136,7 +156,7 @@ set fo-=cro
 set spell spelllang=en_us
 
 " Want to set 24-bit true colors? You can toggle this by typing the command below
-set termguicolors
+" set termguicolors
 
 " Set the + register (system clipboard) as the default? You can toggle this by typing the command below
 set clipboard=unnamedplus
@@ -160,6 +180,13 @@ set cul
 " set cuc
 
 filetype on
+
+" Set the time, in milliseconds, to wait for a mapped sequence to complete? You can toggle
+" this by typing the command below
+" Alternative command :set timeoutlen=1000
+" The default value is 1000
+set timeoutlen=1000
+
 
 """ Unused commands but they are here just in case
 
@@ -204,6 +231,10 @@ endfunction
 " the command below and setting it to desired key
 let mapleader=";"
 
+" Want to set a localmapleader? 
+let maplocalleader=","
+
+
 " Sourcing init.vim config file
 noremap <F2> :source $HOME/.config/nvim/init.vim<CR> 
 
@@ -247,6 +278,9 @@ autocmd FileType tex nnoremap <Leader>5 0i%<Esc>
 
 " Insert begin environment
 autocmd FileType tex inoremap <Leader>bg \begin{<++>}<CR><++><CR>\end{<++>}<CR><++><Esc>?begin<Enter>"_i<Esc>
+
+" Testing vim-which-key
+autocmd FileType tex nnoremap <Leader>bg \begin{<++>}<CR><++><CR>\end{<++>}<CR><++><Esc>?begin<Enter>"_i<Esc>
 
 
 
@@ -473,7 +507,6 @@ autocmd FileType tex inoremap <Leader>g \gls{<++>}<Space><++><Esc>?gls<Enter>"_i
 " Insert new acronym environment
 autocmd FileType tex inoremap <Leader>acr \newglossaryentry{<++>}<CR>{<CR>type=\acronymtype,<CR>name={<++>},<CR>description={<++>},<CR>first={<++>}<CR>}<CR><++><Esc>?newglossaryentry<Enter>"_i<Esc>
 " autocmd FileType tex inoremap ;acr \newglossaryentry{<++>}<CR>{<CR>type=\acronymtype,<CR>name={<++>},<CR>description={<++>},<CR>first={\glsentrydesc{<++>} (\glsentrytext{<++>})},<CR>plural={<++>},<CR>firstplural={\glsentrydescplural{<++>} (\glsentryplural{<++>})}<CR>}<CR><++><Esc>?newglossaryentry<Enter>"_i<Esc>
-
 
 
 
