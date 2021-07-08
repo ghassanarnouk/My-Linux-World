@@ -43,6 +43,7 @@ let g:nightflyCursorColor=1
 
 
 """""""""""""""""""""""""""""""""""""""WhichKey-Plugin""""""""""""""""""""""""""""""""""
+
 nnoremap <silent> <leader> :WhichKey ';'<CR>
 
 " call which_key#register('<Space>', "g:which_key_map")
@@ -53,8 +54,9 @@ nnoremap <silent> <leader> :<c-u>WhichKey ';'<CR>
 vnoremap <silent> <localleader> :<c-u>WhichKey ','<CR>
 
 
-"""""""""""""""""""""""""""""""""""""""Nightfly-Plugin""""""""""""""""""""""""""""""""""
-map <localleader><tab> :Goyo \| set linebreak<CR>
+"""""""""""""""""""""""""""""""""""""""""Goyo-Plugin""""""""""""""""""""""""""""""""""""
+
+noremap <localleader>g :Goyo \| set linebreak<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
