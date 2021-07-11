@@ -19,6 +19,10 @@ Plug 'liuchengxu/vim-which-key'
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 " https://github.com/junegunn/goyo.vim
 Plug 'junegunn/goyo.vim'
+" https://github.com/junegunn/vim-easy-align
+Plug 'junegunn/vim-easy-align'
+" https://github.com/Yggdroot/indentLine
+Plug 'Yggdroot/indentLine'
 
 call plug#end()
 
@@ -57,6 +61,50 @@ vnoremap <silent> <localleader> :<c-u>WhichKey ','<CR>
 """""""""""""""""""""""""""""""""""""""""Goyo-Plugin""""""""""""""""""""""""""""""""""""
 
 noremap <localleader>g :Goyo \| set linebreak<CR>
+
+
+""""""""""""""""""""""""""""""""""""""Easy-Align-Plugin"""""""""""""""""""""""""""""""""
+
+
+
+
+
+""""""""""""""""""""""""""""""""""""""IndentLine-Plugin"""""""""""""""""""""""""""""""""
+
+" :set fieltype returns the extension type of the file opened
+" :set buftype returns the extension type of the buffer opened
+
+
+" Specify a list of file types that has indentLine plugin disabled by default? You can toggle this by typing the command below
+" NOT WORKING
+"let g:indentLine_fileTypeExculde = ["vimwiki", "help", "diff"]
+
+" Specify a list of file types that has indentLine plugin enabled by default? You can toggle this by typing the command below
+" NOT WORKING
+" let g:indentLine_filetype = ['tex', 'sh']
+
+" Disable indentLine plugin by default? You can toggle this by typing the
+" command below
+" let g:indentLine_enabled = 0
+
+" Highlight conceal color with your color scheme? You can toggle this by
+" typing the command below 
+let g:indentLine_setColors = 0
+
+" Want to use the same colors that are used for tab indents? You can toggle
+" this by typing command below
+" let g:indentLine_defaultGroup = 'SpecialKey'
+
+" Display more beautiful lines? You can toggle this by typing the
+" command below
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+
+" Show leading spaces? You can toggle this by typing the command below
+" let g:indentLine_leadingSpaceEnabled = 1
+
+" Specify a character to show for leading space? You can toggle this by
+" typing the command below
+"let g:indentLine_leadingSpaceChar = '.'
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -229,11 +277,12 @@ endfunction
 
 """""""""""""""""""""""""""""""""""""GENERAL""""""""""""""""""""""""""""""""""""""""""""
 
-" Prefers <leader> key to not be \ by default? You can set this by typing
+" Prefers <leader> key to not be \ the default? You can set this by typing
 " the command below and setting it to desired key
 let mapleader=";"
 
-" Want to set a localmapleader? 
+" Prefers to set a localmapleader? You can set this by typing the command below and
+" setting it to the desired key
 let maplocalleader=","
 
 
