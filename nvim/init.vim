@@ -95,9 +95,18 @@ let g:indentLine_setColors = 0
 " this by typing command below
 " let g:indentLine_defaultGroup = 'SpecialKey'
 
+" Specify whether the first indent level should be show? You can toggle this
+" by typing the command below
+" Default value is 0
+let g:indentLine_showFirstIndentLevel = 1
+
+" Specify a character to be used as indent line on the first level? You can
+" toggle this by typing the command below
+let g:indentLine_first_char = "|"
+
 " Display more beautiful lines? You can toggle this by typing the
 " command below
-let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+let g:indentLine_char_list = ['¦', '┆', '┊', '|']
 
 " Show leading spaces? You can toggle this by typing the command below
 " let g:indentLine_leadingSpaceEnabled = 1
@@ -368,7 +377,9 @@ autocmd FileType tex inoremap <Leader>fg \begin{figure}[htbp]<CR>\label{fig:<++>
 " Table commands are under review
 autocmd FileType tex inoremap <Leader>tb \begin{table}[htbp]<CR>\centering<CR>\caption{<++>}<CR>\begin{tabular}{<++>}<CR><++><CR>\csvreader[<++>]{<++>}{}<CR>{<++>}<CR>\end{tabular}<CR>\label{tab:<++>}<CR>\end{table}<CR><++><Esc>?begin{table<Enter>"_i<Esc>
 
-autocmd FileType tex inoremap <Leader>ltb \begin{longtable}{<++>}<CR>\caption[<++>]{<++>\label{tab:<++>}}\\ <CR>{<++>}<CR>\csvreader[<++>]{<++>}{}<CR>{<++>}<CR>\end{longtable}<CR><++><Esc>?begin{longta<Enter>"_i<Esc>
+autocmd FileType tex inoremap <Leader>ltb \begin{longtable}{<++>}<CR>\caption[<++>]{<++>\label{tab:<++>}}\\ <CR>{<++>}<CR>\csvreader[<++>]{<++>}{}<CR>{<++>}<CR>\end{longtable}<CR><++><Esc>?begin{longtable}<Enter>"_i<Esc>
+
+autocmd FileType tex inoremap <Leader>otb \begin{table}[htbp]<CR>\label{tb:<++>}<CR>\captionof{table}{<++>}<CR>\begin{centering}<CR>\begin{tabular}{<++>}<CR>\hline<CR><++><Space>&<Space><++><Space>&<Space><++>\\<CR>\hline<CR>\end{tabular}<CR>\end{centering}<CR>\end{table}<Esc>?begin{table}<Enter>"_i<Esc>
 
 
 
