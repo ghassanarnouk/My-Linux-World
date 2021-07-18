@@ -23,17 +23,22 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/vim-easy-align'
 " https://github.com/Yggdroot/indentLine
 Plug 'Yggdroot/indentLine'
+" https://github.com/tpope/vim-surround
+"Plugin 'tpope/vim-surround'
 
 call plug#end()
 
 
 """""""""""""""""""""""""""""""""""""""Nightfly-Plugin""""""""""""""""""""""""""""""""""
 
-" Want to set the color scheme to nightfly? You can toggle this by typing the command below
-colorscheme nightfly
+" Ensure the order of `set termguicolors` and `colorscheme nightfly` is set as
+" follows
 
 " Setting 24-bit true colors and the nightfly theme
 set termguicolors 
+
+" Want to set the color scheme to nightfly? You can toggle this by typing the command below
+colorscheme nightfly
 
 " Underline matching parentheses? You can toggle this by typing the command
 " below
@@ -66,7 +71,6 @@ noremap <localleader>g :Goyo \| set linebreak<CR>
 """"""""""""""""""""""""""""""""""""""Easy-Align-Plugin"""""""""""""""""""""""""""""""""
 
 " Just a test again!!
-
 
 
 """"""""""""""""""""""""""""""""""""""IndentLine-Plugin"""""""""""""""""""""""""""""""""
@@ -114,6 +118,9 @@ let g:indentLine_char_list = ['¦', '┆', '┊', '|']
 " Specify a character to show for leading space? You can toggle this by
 " typing the command below
 "let g:indentLine_leadingSpaceChar = '.'
+
+
+"""""""""""""""""""""""""""""""""""""""n""""""""""""""""""""""""""""""""""
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
