@@ -24,7 +24,9 @@ Plug 'junegunn/vim-easy-align'
 " https://github.com/Yggdroot/indentLine
 Plug 'Yggdroot/indentLine'
 " https://github.com/tpope/vim-surround
-"Plugin 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
+" https://vimawesome.com/plugin/nerdtree-red
+" Plug 'scrooloose/nerdtree'
 
 call plug#end()
 
