@@ -26,7 +26,7 @@ Plug 'Yggdroot/indentLine'
 " https://github.com/tpope/vim-surround
 Plug 'tpope/vim-surround'
 " https://vimawesome.com/plugin/nerdtree-red
-" Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 
 call plug#end()
 
@@ -124,6 +124,10 @@ let g:indentLine_char_list = ['¦', '┆', '┊', '|']
 
 """""""""""""""""""""""""""""""""""""""n""""""""""""""""""""""""""""""""""
 
+nnoremap <localleader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                   General Settings
@@ -331,11 +335,13 @@ inoremap <silent> <leader><Space><Space> <Esc>/<++><Enter>"_c4l
 
 " Copy Paste functionality from/to vim to/from other applications
 " Does the same as :set clipboard=unnamedplus
-vnoremap <C-c> "*y :let @+=@*<CR>
-map <C-v> "+p
+vnoremap <C-c> "*y :let @+=@*<CR> map <C-v> "+p 
 
 " Select all text in buffer and copy it
 nnoremap <C-a> gg<S-v><S-g>y
+
+" Another option for Esc-like functionality
+inoremap kj <Esc>
 
 
 """""""""""""""""""""""""""""""""""""""TEX""""""""""""""""""""""""""""""""""""""""""""""
@@ -586,6 +592,6 @@ autocmd FileType tex inoremap <Leader>acr \newglossaryentry{<++>}<CR>{<CR>type=\
 
 """""""""""""""""""""""""""""""""""""""BASH"""""""""""""""""""""""""""""""""""""""""""""
 
-autocmd FileType sh inoremap <leader>if if<Space>[[<Space>$?<Space>-ne<Space>0<Space>]];<Space>then<CR>echo<Space>'Failed<Space>to<Space><++>'<CR>exit<Space>1<CR>fi<Esc>?Failed<Enter>"_i<Esc>
+" autocmd FileType sh inoremap <leader>if if<Space>[[<Space>$?<Space>-ne<Space>0<Space>]];<Space>then<CR>echo<Space>'Failed<Space>to<Space><++>'<CR>exit<Space>1<CR>fi<Esc>?Failed<Enter>"_i<Esc>
 
 autocmd FileType sh inoremap <leader>oc #<Space>Checking<Space>if<Space><++><CR>operationCheck<Space>$?<Space>"Failed<Space>to<Space><++>."<Esc>?Checking<Enter>"_i<Esc>
