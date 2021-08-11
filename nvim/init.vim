@@ -67,12 +67,20 @@ vnoremap <silent> <localleader> :<c-u>WhichKey ','<CR>
 
 """""""""""""""""""""""""""""""""""""""""Goyo-Plugin""""""""""""""""""""""""""""""""""""
 
-noremap <localleader>g :Goyo \| set linebreak<CR>
+" noremap <localleader>g :Goyo \| set linebreak<CR>
+noremap <localleader>g :Goyo 120x60<CR>
 
+" Add the Goyo function here
 
 """"""""""""""""""""""""""""""""""""""Easy-Align-Plugin"""""""""""""""""""""""""""""""""
 
-" Just a test again!!
+" To use this plugin with latex tables, use the following command: gaip**&
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 
 """"""""""""""""""""""""""""""""""""""IndentLine-Plugin"""""""""""""""""""""""""""""""""
@@ -122,7 +130,7 @@ let g:indentLine_char_list = ['¦', '┆', '┊', '|']
 "let g:indentLine_leadingSpaceChar = '.'
 
 
-"""""""""""""""""""""""""""""""""""""""n""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""Nerdtree-Plugin""""""""""""""""""""""""""""""""""
 
 nnoremap <localleader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
@@ -132,6 +140,10 @@ nnoremap <C-f> :NERDTreeFind<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                   General Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Want the edited file to be detected by vim? You can toggle this by typing
+" the command below
+filetype on
 
 " Highlight syntax? You can toggle this by typing the command below 
 " The command does syntax highlighting for the majority of programming languages but not
@@ -235,8 +247,8 @@ set clipboard=unnamedplus
 
 " Avoid all the hit-enter prompts caused by file messages? You can toggle this by typing the command below
 " See `:h shm` for flag options.
-" Alternative command :set shortmess+=flmnrw
-set shm+=flmnrw
+" Alternative command :set shortmess+=flmnrwx
+set shm+=flmnrwx
 
 " Enable auto-completion using C-p & C-N? You can toggle this by typing the command below
 set complete+=k
@@ -251,13 +263,15 @@ set cul
 " Alternative command :set cursorcolumn
 " set cuc
 
-filetype on
-
 " Set the time, in milliseconds, to wait for a mapped sequence to complete? You can toggle
 " this by typing the command below
 " Alternative command :set timeoutlen=1000
 " The default value is 1000
-set timeoutlen=1000
+set tm=1000
+
+" This section is under review
+set foldenable
+set foldmethod=indent
 
 
 """ Unused commands but they are here just in case
@@ -305,7 +319,7 @@ let mapleader=";"
 
 " Prefers to set a localmapleader? You can set this by typing the command below and
 " setting it to the desired key
-let maplocalleader=","
+let maplocalleader="."
 
 
 " Sourcing init.vim config file
@@ -323,6 +337,9 @@ nnoremap <F7> :set hlsearch!<CR>
 " Toggle off the cursor line highlight
 nnoremap <F8> :set cul!<CR>
 
+" Toggle off the Goyo plugin
+nnoremap <F9> :set Goyo!<CR>
+
 " Documentation [In Progress]
 nnoremap <Tab> :tabNext<CR>
 noremap <C-n> :tabnew 
@@ -335,11 +352,11 @@ inoremap <silent> <leader><Space><Space> <Esc>/<++><Enter>"_c4l
 
 " Copy Paste functionality from/to vim to/from other applications
 " Does the same as :set clipboard=unnamedplus
-vnoremap <C-c> "*y :let @+=@*<CR> 
-map <C-v> "+p 
+" vnoremap <C-c> "*y :let @+=@*<CR> 
+" map <C-v> "+p 
 
 " Select all text in buffer and copy it
-nnoremap <C-a> gg<S-v><S-g>y
+nnoremap <C-y> gg<S-v><S-g>y
 
 " Another option for Esc-like functionality
 inoremap kj <Esc>
