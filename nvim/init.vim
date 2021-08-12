@@ -67,8 +67,11 @@ vnoremap <silent> <localleader> :<c-u>WhichKey ','<CR>
 
 """""""""""""""""""""""""""""""""""""""""Goyo-Plugin""""""""""""""""""""""""""""""""""""
 
-" noremap <localleader>g :Goyo \| set linebreak<CR>
+" Activate the Goyo plugin
 noremap <localleader>g :Goyo 120x60<CR>
+
+" Another activation of the Goyo plugin
+" noremap <localleader>g :Goyo \| set linebreak<CR>
 
 " Add the Goyo function here
 
@@ -323,7 +326,7 @@ let maplocalleader="."
 
 
 " Sourcing init.vim config file
-noremap <F2> :source $HOME/.config/nvim/init.vim<CR> 
+nnoremap <F2> :source $HOME/.config/nvim/init.vim<CR> 
 
 " Toggle on and off relative line number 
 nnoremap <F3> :set rnu!<CR>
@@ -334,11 +337,14 @@ nnoremap <F4> :set spell!<CR>
 " Toggle off the search highlight
 nnoremap <F7> :set hlsearch!<CR>
 
-" Toggle off the cursor line highlight
-nnoremap <F8> :set cul!<CR>
-
 " Toggle off the Goyo plugin
-nnoremap <F9> :set Goyo!<CR>
+nnoremap <F8> :Goyo!<CR>
+
+" Another option for Esc-like functionality
+inoremap kj <Esc>
+
+" Select all text in buffer and copy it
+nnoremap <C-y> gg<S-v><S-g>y
 
 " Documentation [In Progress]
 nnoremap <Tab> :tabNext<CR>
@@ -354,12 +360,6 @@ inoremap <silent> <leader><Space><Space> <Esc>/<++><Enter>"_c4l
 " Does the same as :set clipboard=unnamedplus
 " vnoremap <C-c> "*y :let @+=@*<CR> 
 " map <C-v> "+p 
-
-" Select all text in buffer and copy it
-nnoremap <C-y> gg<S-v><S-g>y
-
-" Another option for Esc-like functionality
-inoremap kj <Esc>
 
 
 """""""""""""""""""""""""""""""""""""""TEX""""""""""""""""""""""""""""""""""""""""""""""
