@@ -272,9 +272,24 @@ set cul
 " The default value is 1000
 set tm=1000
 
-" This section is under review
-set foldenable
-set foldmethod=indent
+" Want a folds to automatically close when moving out of them? You can toggle
+" this by typing the command below
+" Alternate command :set foldclose
+set fcl=all
+
+" Switch between all text unfolded and viewing the text with folds? You can
+" toggle this by typing the command below
+" Alternative command :set foldenable
+set fen 
+
+" Show a side column which indicates open and closed folds? You can toggle
+" this by typing the command below
+" Alternative command :set foldcolumn=4
+set fdc=4
+
+" Specify the kind of folding used? You can toggle this by typing the command below
+" Alternative command :set foldmethod=indent
+set fdm=indent
 
 
 """ Unused commands but they are here just in case
