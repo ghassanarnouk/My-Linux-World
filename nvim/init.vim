@@ -275,21 +275,21 @@ set tm=1000
 " Want a folds to automatically close when moving out of them? You can toggle
 " this by typing the command below
 " Alternate command :set foldclose
-set fcl=all
+" set fcl=all
 
 " Switch between all text unfolded and viewing the text with folds? You can
 " toggle this by typing the command below
 " Alternative command :set foldenable
-set fen 
+" set fen 
 
 " Show a side column which indicates open and closed folds? You can toggle
 " this by typing the command below
 " Alternative command :set foldcolumn=4
-set fdc=4
+" set fdc=4
 
 " Specify the kind of folding used? You can toggle this by typing the command below
 " Alternative command :set foldmethod=indent
-set fdm=indent
+" set fdm=indent
 
 
 """ Unused commands but they are here just in case
@@ -612,7 +612,7 @@ autocmd FileType tex inoremap <Leader>Hu {\Huge<Space><++>}<Space><++><Esc>?Huge
 autocmd FileType tex inoremap <Leader>g \gls{<++>}<Space><++><Esc>?gls<Enter>"_i<Esc>
 
 " Insert new glossary environment
- autocmd FileType tex inoremap <Leader>gls \newglossaryentry{<++>}<CR>{<CR>name={<++>},<CR>description={<++>}<CR>}<CR><++><Esc>?newglossaryentry<Enter>"_i<Esc>
+autocmd FileType tex inoremap <Leader>gls \newglossaryentry{<++>}<CR>{<CR>name={<++>},<CR>description={<++>}<CR>}<CR><++><Esc>?newglossaryentry<Enter>"_i<Esc>
 
 " Insert new acronym environment
 autocmd FileType tex inoremap <Leader>acr \newglossaryentry{<++>}<CR>{<CR>type=\acronymtype,<CR>name={<++>},<CR>description={<++>},<CR>first={<++>}<CR>}<CR><++><Esc>?newglossaryentry<Enter>"_i<Esc>
