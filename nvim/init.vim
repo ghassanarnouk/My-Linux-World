@@ -308,10 +308,10 @@ set tm=1000
 
 
 " Documentation and function implementation are [In Progress]
-function Nvim_Source()
-    execute "w"
-    source ~/.config/nvim/init.vim
-endfunction
+" function Nvim_Source()
+"    execute "w"
+"    source ~/.config/nvim/init.vim
+"endfunction
 
 
 
@@ -363,18 +363,27 @@ nnoremap <C-y> gg<S-v><S-g>y
 
 " Documentation [In Progress]
 nnoremap <Tab> :tabNext<CR>
-noremap <C-n> :tabnew 
+noremap <C-n> :tabnew<CR>
 
 " Navigate to the next <++> in Normal mode
 noremap <silent> <leader><Space> <Esc>/<++><Enter>"_c4l
+noremap <silent> ' <Esc>/<++><Enter>"_c4l
 
 " Navigate to the next <++> in Insert mode
 inoremap <silent> <leader><Space><Space> <Esc>/<++><Enter>"_c4l
 
+" Setting .md filetype to markdown
+autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
+
+" This macro has been disabled for now [In Progress]
 " Copy Paste functionality from/to vim to/from other applications
 " Does the same as :set clipboard=unnamedplus
 " vnoremap <C-c> "*y :let @+=@*<CR> 
 " map <C-v> "+p 
+
+
+" Executing C-a and C-x on a number in vim will increment and decrement the
+" number respectively
 
 
 """""""""""""""""""""""""""""""""""""""TEX""""""""""""""""""""""""""""""""""""""""""""""
@@ -620,11 +629,73 @@ autocmd FileType tex inoremap <Leader>acr \newglossaryentry{<++>}<CR>{<CR>type=\
 
 
 
-
-
-
 """""""""""""""""""""""""""""""""""""""BASH"""""""""""""""""""""""""""""""""""""""""""""
 
 autocmd FileType sh inoremap <leader>if if<Space>[[<Space>$?<Space>-ne<Space>0<Space>]];<Space>then<CR>echo<Space>'Failed<Space>to<Space><++>'<CR>exit<Space>1<CR>fi<Esc>?Failed<Enter>"_i<Esc>
 
 autocmd FileType sh inoremap <leader>oc #<Space>Checking<Space>if<Space><++><CR>operationCheck<Space>$?<Space>"Failed<Space>to<Space><++>."<Esc>?Checking<Enter>"_i<Esc>
+
+
+
+"""""""""""""""""""""""""""""""""""""MARKDOWN"""""""""""""""""""""""""""""""""""""""""""
+
+" Sections, Subsections, Subsubsections, and Subsubsubsections
+
+" Insert section environment 
+autocmd FileType md inoremap <leader>s #<Space><++><CR><CR><++><Esc>?#<Enter>"_i<Esc>
+
+autocmd FileType txt inoremap <leader>s #<Space><++><CR><CR><++><Esc>?#<Enter>"_i<Esc>
+
+
+
+autocmd FileType md inoremap <leader>if if<Space>[[<Space>$?<Space>-ne<Space>0<Space>]];<Space>then<CR>echo<Space>'Failed<Space>to<Space><++>'<CR>exit<Space>1<CR>fi<Esc>?Failed<Enter>"_i<Esc>
+
+autocmd FileType txt inoremap <leader>if if<Space>[[<Space>$?<Space>-ne<Space>0<Space>]];<Space>then<CR>echo<Space>'Failed<Space>to<Space><++>'<CR>exit<Space>1<CR>fi<Esc>?Failed<Enter>"_i<Esc>
+
+
+
+""""""""""""""""""""""""""""""""Assembly-INTEL80386"""""""""""""""""""""""""""""""""""""
+
+" autocmd BufNewFile,BufFilePre,BufRead asm 
+
+" Intel 80386 Op-Code
+
+autocmd FileType asm inoremap <leader>ad ADD<Space><++>,<Space><++><CR><++><Esc>?ADD<Enter>"_i<Esc>
+
+autocmd FileType asm inoremap <leader>s SUB<Space><++>,<Space><++><CR><++><Esc>?SUB:<Enter>"_i<Esc>
+
+autocmd FileType asm inoremap <leader>ac ADC<Space><++>,<Space><++><CR><++><Esc>?ADC<Enter>"_i<Esc>
+
+autocmd FileType asm inoremap <leader>i INC<Space><++><CR><++><Esc>?INC:<Enter>"_i<Esc>
+
+autocmd FileType asm inoremap <leader>d DEC<Space><++><CR><++><Esc>?DEC:<Enter>"_i<Esc>
+
+autocmd FileType asm inoremap <leader>c CMP<Space><++>,<Space><++><CR><++><Esc>?CMP<Enter>"_i<Esc>
+
+autocmd FileType asm inoremap <leader>n NEG<Space><++><CR><++><Esc>?NEG:<Enter>"_i<Esc>
+
+autocmd Filetype asm inoremap <leader>a AND<Space><++>,<Space><++><CR><++><Esc>?AND<Enter>"_i<Esc>
+
+autocmd Filetype asm inoremap <leader>x XOR<Space><++>,<Space><++><CR><++><Esc>?XOR<Enter>"_i<Esc>
+
+autocmd Filetype asm inoremap <leader>o OR<Space><++>,<Space><++><CR><++><Esc>?OR<Enter>"_i<Esc>
+
+autocmd Filetype asm inoremap <leader>n NOT<Space><++><CR><++><Esc>?NOT<Enter>"_i<Esc>
+
+autocmd Filetype asm inoremap <leader>m MUL<Space><++>,<Space><++><CR><++><Esc>?MUL<Enter>"_i<Esc>
+
+autocmd Filetype asm inoremap <leader>di DIV<Space><++>,<Space><++><CR><++><Esc>?DIV<Enter>"_i<Esc>
+
+autocmd Filetype asm inoremap <leader>sr SAR<Space><++>,<Space><++><CR><++><Esc>?SAR<Enter>"_i<Esc>
+
+autocmd Filetype asm inoremap <leader>sl SAL<Space><++>,<Space><++><CR><++><Esc>?SAL<Enter>"_i<Esc>
+
+autocmd Filetype asm inoremap <leader>rr ROR<Space><++>,<Space><++><CR><++><Esc>?ROR<Enter>"_i<Esc>
+
+autocmd Filetype asm inoremap <leader>rl ROL<Space><++>,<Space><++><CR><++><Esc>?ROL<Enter>"_i<Esc>
+
+autocmd Filetype asm inoremap <leader>mv MOV<Space><++>,<Space><++><CR><++><Esc>?MOV<Enter>"_i<Esc>
+
+autocmd Filetype asm inoremap <leader>b BT<Space><++>,<Space><++><CR><++><Esc>?BT<Enter>"_i<Esc
+
+
