@@ -432,7 +432,12 @@ autocmd FileType tex inoremap <Leader>fg \begin{figure}[htbp]<CR>\label{fig:<++>
 "" Tables
 
 " Table commands are under review
-autocmd FileType tex inoremap <Leader>tb \begin{table}[htbp]<CR>\centering<CR>\caption{<++>}<CR>\begin{tabular}{<++>}<CR><++><CR>\csvreader[<++>]{<++>}{}<CR>{<++>}<CR>\end{tabular}<CR>\label{tab:<++>}<CR>\end{table}<CR><++><Esc>?begin{table<Enter>"_i<Esc>
+
+" Insert csvAutoTabular command
+autocmd FileType tex inoremap <Leader>atb \begin{table}[htbp]<CR>\begin{centering}<CR>\caption{<++>}<CR>\csvautotabular{<++>.csv}<CR>\label{tab:<++>}<CR>\end{centering}<CR>\end{table}<CR><++><Esc>?begin{table}<Enter>"_i<Esc>
+
+
+autocmd FileType tex inoremap <Leader>tb \begin{table}[htbp]<CR>\centering<CR>\caption{<++>}<CR>\begin{tabular}{<++>}<CR><++><CR>\csvreader[<++>]{<++>}{}<CR>{<++>}<CR>\end{tabular}<CR>\label{tab:<++>}<CR>\end{table}<CR><++><Esc>?begin{table}<Enter>"_i<Esc>
 
 autocmd FileType tex inoremap <Leader>ltb \begin{longtable}{<++>}<CR>\caption[<++>]{<++>\label{tab:<++>}}\\ <CR>{<++>}<CR>\csvreader[<++>]{<++>}{}<CR>{<++>}<CR>\end{longtable}<CR><++><Esc>?begin{longtable}<Enter>"_i<Esc>
 
