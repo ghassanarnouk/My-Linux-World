@@ -434,7 +434,7 @@ autocmd FileType tex inoremap <Leader>fg \begin{figure}[htbp]<CR>\label{fig:<++>
 " Table commands are under review
 
 " Insert csvAutoTabular command
-autocmd FileType tex inoremap <Leader>atb \begin{table}[htbp]<CR>\begin{centering}<CR>\caption{<++>}<CR>\csvautotabular{<++>.csv}<CR>\label{tab:<++>}<CR>\end{centering}<CR>\end{table}<CR><++><Esc>?begin{table}<Enter>"_i<Esc>
+autocmd FileType tex inoremap <Leader>atb \begin{table}[htbp]<CR>\centering<CR>\caption{<++>}<CR>\csvautotabular{Imports/Data/<++>.csv}<CR>\label{tab:<++>}<CR>\end{table}<CR><++><Esc>?begin{table}<Enter>"_i<Esc>
 
 
 autocmd FileType tex inoremap <Leader>tb \begin{table}[htbp]<CR>\centering<CR>\caption{<++>}<CR>\begin{tabular}{<++>}<CR><++><CR>\csvreader[<++>]{<++>}{}<CR>{<++>}<CR>\end{tabular}<CR>\label{tab:<++>}<CR>\end{table}<CR><++><Esc>?begin{table}<Enter>"_i<Esc>
