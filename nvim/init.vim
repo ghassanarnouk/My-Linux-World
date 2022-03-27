@@ -418,15 +418,18 @@ autocmd FileType tex nnoremap <Leader>bg \begin{<++>}<CR><++><CR>\end{<++>}<CR><
 
 " Insert appendices environment
 " \addappheadtotoc: adds the title Appendices in toc
-autocmd FileType tex inoremap <Leader>app \addappheadtotoc<CR>\begin{appendices}<CR>\section{<++>}<CR>\label{sct:<++>}<CR><++><CR>\end{appendices}<CR><++><Esc>?section<Enter>"_i<Esc>
+autocmd FileType tex inoremap <Leader>app \begin{appendices}<CR>\section{<++>}<CR>\label{app:<++>}<CR><++><CR>\end{appendices}<CR><++><Esc>?section<Enter>"_i<Esc>
 
 
 
 "" Figures
 
 " Insert figure environment
-autocmd FileType tex inoremap <Leader>fg \begin{figure}[htbp]<CR>\label{fig:<++>}<CR>\begin{centering}<CR>\includegraphics[width=<++>\linewidth]{<++>.png}<CR>\captionof{figure}{<++>}<CR>\end{centering}<CR>\end{figure}<CR><++><Esc>?begin{figure}<Enter>"_i<Esc>
+autocmd FileType tex inoremap <Leader>fg \begin{figure}[htbp]<CR>\centering<CR>\includegraphics[width=<++>\linewidth]{<++>.png}<CR>\captionof{figure}{<++>}<CR>\label{fig:<++>}<CR>\end{figure}<CR><++><Esc>?begin{figure}<Enter>"_i<Esc>
 
+" Insert sub-figure environment
+" \hfill is to have vertical white space separating the two sub-figure
+autocmd FileType tex inoremap <Leader>sfg \begin{figure}[htbp]<CR>\centering<CR>\begin{subfigure}[b]{0.45\textwidth}<CR>\includegraphics[width=\textwidth]{<++>.png}<CR>\captionof{figure}{<++>}<CR>\label{<++>}<CR>\end{subfigure}<CR>\hfill<CR>\begin{subfigure}[b]{0.45\textwidth}<CR>\includegraphics[width=\textwidth]{<++>.png}<CR>\captionof{figure}{<++>}<CR>\label{<++>}<CR>\end{subfigure}<CR>\captionof{figure}{<++>}<CR>\label{<++>}<CR>\end{figure}<CR><++><Esc>?begin{figure}<Enter>"_i<Esc>
 
 
 "" Tables
@@ -463,6 +466,9 @@ autocmd FileType tex inoremap <Leader>des \begin{description}<CR>\item<Space><++
 
 "" Equations
 
+" Insert therefore symbol
+autocmd FileType tex inoremap <Leader>th \therefore<Space><++><Esc>?therefore<Enter>"_i<Esc>
+
 " Insert no number command
 autocmd FileType tex inoremap <Leader>nnu \nonumber<Esc>
 
@@ -485,8 +491,23 @@ autocmd FileType tex inoremap <Leader>ual \begin{align*}<CR><++><CR>\label{eqt:<
 
 "" Mathematics 
 
+"" SI Units
+
 " Insert SI units command
 autocmd FileType tex inoremap <Leader>si \SI{<++>}{<++>}<Space><++><Esc>?SI<Enter>"_i<Esc>
+
+" Insert Volt unit
+" autocmd FileType tex inoremap <Leader>siv \volt<Esc>
+
+" Insert Milli prefix
+" autocmd FileType tex inoremap <Leader>sim \milli<Esc>
+
+" Insert Meter unit
+" autocmd FileType tex inoremap <Leader>sime \meter<Esc>
+
+" Insert Ampere unit
+" autocmd FileType tex inoremap <Leader>siam \ampere<Esc>
+
 
 " Insert fraction command
 autocmd FileType tex inoremap <Leader>f \frac{<++>}{<++>}<Esc>?frac<Enter>"_i<Esc>
@@ -521,7 +542,7 @@ autocmd FileType tex inoremap <Leader>pgb \pagebreak<CR><CR><++><Esc>?pagebreak<
 " Insert pagebreak command
 " \clearpage: ends a page, and puts pending tables and figures on separate
 " float pages with no text
-autocmd FileType tex inoremap <Leader>cpg \clearpage<CR><CR><++><Esc>?clearpage<Enter>"_i<Esc>
+autocmd FileType tex inoremap <Leader>cpg \clearpage<CR><++><Esc>?clearpage<Enter>"_i<Esc>
 
 
 
@@ -573,8 +594,9 @@ autocmd FileType tex inoremap <Leader>usss \subsubsection*{<++>}<CR>\label{ssct:
 "" Codes
 
 " [language={[LaTeX]TeX}]
-autocmd FileType tex inoremap <Leader>lst \begin{lstlisting}[language={<++>}, caption={<++>}, captionpos=b, label={lst:<++>}]<CR><++><CR>\end{lstlisting}<Esc>?begin{lstlisting}<Enter>"_i<Esc>
+autocmd FileType tex inoremap <Leader>lst \begin{lstlisting}[language={<++>}, caption={<++>}, captionpos=b, label={lst:<++>}]<CR><++><CR>\end{lstlisting}<CR><++><Esc>?begin{lstlisting}<Enter>"_i<Esc>
 
+autocmd FileType tex inoremap <Leader>ver \begin{verbatim}<CR><++><CR>\end{verbatim}<CR><++><Esc>?begin{verbatim}<Enter>"_i<Esc>
 
 "" Markdown
 
@@ -659,6 +681,15 @@ autocmd FileType txt inoremap <leader>if if<Space>[[<Space>$?<Space>-ne<Space>0<
 
 
 
+"""""""""""""""""""""""""""""""""""""""""C""""""""""""""""""""""""""""""""""""""""""""""
+
+autocmd FileType c inoremap <leader>if if<Space>(<++>){<CR><++><CR>}<CR><++><Esc>?if<Enter>"_i<Esc>
+
+autocmd FileType c inoremap <leader>ifel if<Space>(<++>){<CR><++><CR>else<CR><++><CR>}<CR><++><Esc>?if<Enter>"_i<Esc>
+
+autocmd FileType c inoremap <leader>pf printf("<++>");<Esc>?printf<Enter>"_i<Esc>
+
+
 """"""""""""""""""""""""""""""""Assembly-INTEL80386"""""""""""""""""""""""""""""""""""""
 
 " autocmd BufNewFile,BufFilePre,BufRead asm 
@@ -667,7 +698,7 @@ autocmd FileType txt inoremap <leader>if if<Space>[[<Space>$?<Space>-ne<Space>0<
 
 autocmd FileType asm inoremap <leader>ad ADD<Space><++>,<Space><++><CR><++><Esc>?ADD<Enter>"_i<Esc>
 
-autocmd FileType asm inoremap <leader>s SUB<Space><++>,<Space><++><CR><++><Esc>?SUB:<Enter>"_i<Esc>
+autocmd FileType asm inoremap <leader>s SUB<Space><++>,<Space><++><CR><++><Esc>?SUB<Enter>"_i<Esc>
 
 autocmd FileType asm inoremap <leader>ac ADC<Space><++>,<Space><++><CR><++><Esc>?ADC<Enter>"_i<Esc>
 
