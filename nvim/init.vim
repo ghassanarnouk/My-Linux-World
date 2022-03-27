@@ -663,6 +663,19 @@ autocmd FileType sh inoremap <leader>if if<Space>[[<Space>$?<Space>-ne<Space>0<S
 autocmd FileType sh inoremap <leader>oc #<Space>Checking<Space>if<Space><++><CR>operationCheck<Space>$?<Space>"Failed<Space>to<Space><++>."<Esc>?Checking<Enter>"_i<Esc>
 
 
+"""""""""""""""""""""""""""""""""""""""Python"""""""""""""""""""""""""""""""""""""""""""
+
+autocmd FileType python inoremap <leader>main def<Space>main():<CR><++><CR><CR>#<Space>main<Space>function<CR>if<Space>__name__<Space>==<Space>"__main__":<CR>main()<CR><++><Esc>?main<Enter>"_i<Esc>
+
+
+"""""""""""""""""""""""""""""""""""""""""C""""""""""""""""""""""""""""""""""""""""""""""
+
+autocmd FileType c inoremap <leader>if if<Space>(<++>){<CR><++><CR>}<CR><++><Esc>?if<Enter>"_i<Esc>
+
+autocmd FileType c inoremap <leader>ifel if<Space>(<++>){<CR><++><CR>else<CR><++><CR>}<CR><++><Esc>?if<Enter>"_i<Esc>
+
+autocmd FileType c inoremap <leader>pf printf("<++>");<Esc>?printf<Enter>"_i<Esc>
+
 
 """""""""""""""""""""""""""""""""""""MARKDOWN"""""""""""""""""""""""""""""""""""""""""""
 
@@ -678,16 +691,6 @@ autocmd FileType txt inoremap <leader>s #<Space><++><CR><CR><++><Esc>?#<Enter>"_
 autocmd FileType md inoremap <leader>if if<Space>[[<Space>$?<Space>-ne<Space>0<Space>]];<Space>then<CR>echo<Space>'Failed<Space>to<Space><++>'<CR>exit<Space>1<CR>fi<Esc>?Failed<Enter>"_i<Esc>
 
 autocmd FileType txt inoremap <leader>if if<Space>[[<Space>$?<Space>-ne<Space>0<Space>]];<Space>then<CR>echo<Space>'Failed<Space>to<Space><++>'<CR>exit<Space>1<CR>fi<Esc>?Failed<Enter>"_i<Esc>
-
-
-
-"""""""""""""""""""""""""""""""""""""""""C""""""""""""""""""""""""""""""""""""""""""""""
-
-autocmd FileType c inoremap <leader>if if<Space>(<++>){<CR><++><CR>}<CR><++><Esc>?if<Enter>"_i<Esc>
-
-autocmd FileType c inoremap <leader>ifel if<Space>(<++>){<CR><++><CR>else<CR><++><CR>}<CR><++><Esc>?if<Enter>"_i<Esc>
-
-autocmd FileType c inoremap <leader>pf printf("<++>");<Esc>?printf<Enter>"_i<Esc>
 
 
 """"""""""""""""""""""""""""""""Assembly-INTEL80386"""""""""""""""""""""""""""""""""""""
