@@ -79,6 +79,9 @@ noremap <localleader>g :Goyo 120x60<CR>
 
 " To use this plugin with latex tables, use the following command: gaip**&
 
+" To use this plugin with csv files, use the following command: gaip*,
+
+
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
 
@@ -424,6 +427,9 @@ autocmd FileType tex inoremap <Leader>app \begin{appendices}<CR>\section{<++>}<C
 
 "" Figures
 
+" Insert noindent command
+autocmd FileType tex inoremap <Leader>ni \noindent<Space><++><Esc>?noindent<Enter>"_i<Esc>
+
 " Insert figure environment
 autocmd FileType tex inoremap <Leader>fg \begin{figure}[htbp]<CR>\centering<CR>\includegraphics[width=<++>\linewidth]{<++>.png}<CR>\captionof{figure}{<++>}<CR>\label{fig:<++>}<CR>\end{figure}<CR><++><Esc>?begin{figure}<Enter>"_i<Esc>
 
@@ -514,6 +520,24 @@ autocmd FileType tex inoremap <Leader>f \frac{<++>}{<++>}<Esc>?frac<Enter>"_i<Es
 
 " Insert more spaced fraction command
 autocmd FileType tex inoremap <Leader>ddf \ddfrac{<++>}{<++>}<Esc>?ddfrac<Enter>"_i<Esc>
+
+
+" Insert square-root command
+autocmd FileType tex inoremap <Leader>sq \sqrt{<++>}<Space><++><Esc>?sqrt<Enter>"_i<Esc>
+
+
+" Insert infinity command
+autocmd FileType tex inoremap <Leader>inf $\infty$<Space><++><Esc>?infty<Enter>"_i<Esc>
+
+" Insert phi command
+autocmd FileType tex inoremap <Leader>phi $\phi$<Space><++><Esc>?infty<Enter>"_i<Esc>
+
+
+" Insert large round brackets
+autocmd FileType tex inoremap <Leader>l( \left(<++>\right)<Space><++><Esc>?left<Enter>"_i<Esc>
+
+" Insert large square brackets
+autocmd FileType tex inoremap <Leader>l[ \left[<++>\right]<Space><++><Esc>?left<Enter>"_i<Esc>
 
 
 
@@ -653,6 +677,16 @@ autocmd FileType tex inoremap <Leader>gls \newglossaryentry{<++>}<CR>{<CR>name={
 " Insert new acronym environment
 autocmd FileType tex inoremap <Leader>acr \newglossaryentry{<++>}<CR>{<CR>type=\acronymtype,<CR>name={<++>},<CR>description={<++>},<CR>first={<++>}<CR>}<CR><++><Esc>?newglossaryentry<Enter>"_i<Esc>
 " autocmd FileType tex inoremap ;acr \newglossaryentry{<++>}<CR>{<CR>type=\acronymtype,<CR>name={<++>},<CR>description={<++>},<CR>first={\glsentrydesc{<++>} (\glsentrytext{<++>})},<CR>plural={<++>},<CR>firstplural={\glsentrydescplural{<++>} (\glsentryplural{<++>})}<CR>}<CR><++><Esc>?newglossaryentry<Enter>"_i<Esc>
+
+
+"" Bibliography
+
+" Insert cite command
+autocmd FileType tex inoremap <Leader>ci \cite{acc:<++>}<Space><++><Esc>?cite<Enter>"_i<Esc>
+
+" Insert article citation
+autocmd FileType bib inoremap <Leader>art @article{acc:<++>,<CR>author={<++>},<CR>title={<++>},<CR>journal={<++>},<CR>volume={<++>},<CR>number={<++>},<CR>pages={<++>},<CR>url={<++>},<CR>year={<++>}<CR>}<Esc>?article<Enter>"_i<Esc>
+
 
 
 
