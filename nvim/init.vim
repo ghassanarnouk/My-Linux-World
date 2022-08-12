@@ -399,6 +399,9 @@ autocmd FileType tex nnoremap <Leader>5 0i%<Esc>
 " Insert begin environment
 autocmd FileType tex inoremap <Leader>bg \begin{<++>}<CR><++><CR>\end{<++>}<CR><++><Esc>?begin<Enter>"_i<Esc>
 
+" Insert usepackage command
+autocmd FileType tex inoremap <Leader>up \usepackage{<++>}<CR><++><Esc>?usepackage<Enter>"_i<Esc>
+
 " Testing vim-which-key
 autocmd FileType tex nnoremap <Leader>bg \begin{<++>}<CR><++><CR>\end{<++>}<CR><++><Esc>?begin<Enter>"_i<Esc>
 
@@ -431,11 +434,15 @@ autocmd FileType tex inoremap <Leader>app \begin{appendices}<CR>\section{<++>}<C
 autocmd FileType tex inoremap <Leader>ni \noindent<Space><++><Esc>?noindent<Enter>"_i<Esc>
 
 " Insert figure environment
-autocmd FileType tex inoremap <Leader>fg \begin{figure}[htbp]<CR>\centering<CR>\includegraphics[width=<++>\linewidth]{<++>.png}<CR>\captionof{figure}{<++>}<CR>\label{fig:<++>}<CR>\end{figure}<CR><++><Esc>?begin{figure}<Enter>"_i<Esc>
+autocmd FileType tex inoremap <Leader>fg \begin{figure}[htbp]<CR>\centering<CR>\includegraphics[width=<++>\linewidth]{<++>.png}<CR>\caption{<++>}<CR>\label{fig:<++>}<CR>\end{figure}<CR><++><Esc>?begin{figure}<Enter>"_i<Esc>
 
 " Insert sub-figure environment
+autocmd FileType tex inoremap <Leader>sfg \begin{figure}[htbp]<CR>\centering\captionsetup{format=hang}<CR>\begin{subfigure}[t]{0.475\textwidth}<CR>\centering\captionsetup{format=hang}<CR>\includegraphics[width=\textwidth]{<++>.png}<CR>\caption{<++>}<CR>\label{fig:<++>}<CR>\end{subfigure}%<CR>\hspace*{0.05\textwidth}<CR>\begin{subfigure}[t]{0.475\textwidth}<CR>\centering\captionsetup{format=hang}<CR>\includegraphics[width=\textwidth]{<++>.png}<CR>\caption{<++>}<CR>\label{fig:<++>}<CR>\end{subfigure}<CR>\caption{<++>}<CR>\label{fig:<++>}<CR>\end{figure}<CR><++><Esc>?begin{figure}<Enter>"_i<Esc>
+
+
+" Old template [In Progress]
 " \hfill is to have vertical white space separating the two sub-figure
-autocmd FileType tex inoremap <Leader>sfg \begin{figure}[htbp]<CR>\centering<CR>\begin{subfigure}[b]{0.45\textwidth}<CR>\includegraphics[width=\textwidth]{<++>.png}<CR>\captionof{figure}{<++>}<CR>\label{<++>}<CR>\end{subfigure}<CR>\hfill<CR>\begin{subfigure}[b]{0.45\textwidth}<CR>\includegraphics[width=\textwidth]{<++>.png}<CR>\captionof{figure}{<++>}<CR>\label{<++>}<CR>\end{subfigure}<CR>\captionof{figure}{<++>}<CR>\label{<++>}<CR>\end{figure}<CR><++><Esc>?begin{figure}<Enter>"_i<Esc>
+" autocmd FileType tex inoremap <Leader>sfg \begin{figure}[htbp]<CR>\centering<CR>\begin{subfigure}[b]{0.45\textwidth}<CR>\includegraphics[width=\textwidth]{<++>.png}<CR>\caption{<++>}<CR>\label{<++>}<CR>\end{subfigure}<CR>\hfill<CR>\begin{subfigure}[b]{0.45\textwidth}<CR>\includegraphics[width=\textwidth]{<++>.png}<CR>\caption{<++>}<CR>\label{<++>}<CR>\end{subfigure}<CR>\caption{<++>}<CR>\label{<++>}<CR>\end{figure}<CR><++><Esc>?begin{figure}<Enter>"_i<Esc>
 
 
 "" Tables
@@ -450,7 +457,7 @@ autocmd FileType tex inoremap <Leader>tb \begin{table}[htbp]<CR>\centering<CR>\c
 
 autocmd FileType tex inoremap <Leader>ltb \begin{longtable}{<++>}<CR>\caption[<++>]{<++>\label{tab:<++>}}\\ <CR>{<++>}<CR>\csvreader[<++>]{<++>}{}<CR>{<++>}<CR>\end{longtable}<CR><++><Esc>?begin{longtable}<Enter>"_i<Esc>
 
-autocmd FileType tex inoremap <Leader>otb \begin{table}[htbp]<CR>\label{tb:<++>}<CR>\captionof{table}{<++>}<CR>\begin{centering}<CR>\begin{tabular}{<++>}<CR>\hline<CR><++><Space>&<Space><++><Space>&<Space><++>\\<CR>\hline<CR>\end{tabular}<CR>\end{centering}<CR>\end{table}<Esc>?begin{table}<Enter>"_i<Esc>
+autocmd FileType tex inoremap <Leader>otb \begin{table}[htbp]<CR>\label{tb:<++>}<CR>\caption{<++>}<CR>\begin{centering}<CR>\begin{tabular}{<++>}<CR>\hline<CR><++><Space>&<Space><++><Space>&<Space><++>\\<CR>\hline<CR>\end{tabular}<CR>\end{centering}<CR>\end{table}<Esc>?begin{table}<Enter>"_i<Esc>
 
 
 
@@ -476,7 +483,7 @@ autocmd FileType tex inoremap <Leader>des \begin{description}<CR>\item<Space><++
 autocmd FileType tex inoremap <Leader>th \therefore<Space><++><Esc>?therefore<Enter>"_i<Esc>
 
 " Insert no number command
-autocmd FileType tex inoremap <Leader>nnu \nonumber<Esc>
+autocmd FileType tex inoremap <Leader>nnu \nonumber
 
 " Insert equation environment 
 autocmd FileType tex inoremap <Leader>eq \begin{equation}<CR><++><CR>\label{eqt:<++>}<CR>\end{equation}<CR><++><Esc>?begin<Enter>"_i<Esc>
@@ -516,7 +523,7 @@ autocmd FileType tex inoremap <Leader>si \SI{<++>}{<++>}<Space><++><Esc>?SI<Ente
 
 
 " Insert fraction command
-autocmd FileType tex inoremap <Leader>f \frac{<++>}{<++>}<Esc>?frac<Enter>"_i<Esc>
+autocmd FileType tex inoremap <Leader>fr \frac{<++>}{<++>}<Esc>?frac<Enter>"_i<Esc>
 
 " Insert more spaced fraction command
 autocmd FileType tex inoremap <Leader>ddf \ddfrac{<++>}{<++>}<Esc>?ddfrac<Enter>"_i<Esc>
@@ -531,6 +538,12 @@ autocmd FileType tex inoremap <Leader>inf $\infty$<Space><++><Esc>?infty<Enter>"
 
 " Insert phi command
 autocmd FileType tex inoremap <Leader>phi $\phi$<Space><++><Esc>?infty<Enter>"_i<Esc>
+
+" Insert hat command
+autocmd FileType tex inoremap <Leader>ha \hat{<++>}<Space><++><Esc>?hat<Enter>"_i<Esc>
+
+" Insert overrightarrow command
+autocmd FileType tex inoremap <Leader>ora \overrightarrow{<++>}<Space><++><Esc>?overrightarrow<Enter>"_i<Esc>
 
 
 " Insert large round brackets
@@ -561,11 +574,15 @@ autocmd FileType tex inoremap <Leader>cant \cancelto{<++>}{<++>}<Esc>?cancelto<E
 
 " Insert pagebreak command
 " \pagebreak: forces a new page
-autocmd FileType tex inoremap <Leader>pgb \pagebreak<CR><CR><++><Esc>?pagebreak<Enter>"_i<Esc>
+" In twosided documents, pagebreak clears the first column and puts text in the
+" second column of the same page
+autocmd FileType tex inoremap <Leader>pgb \pagebreak<CR><++><Esc>?pagebreak<Enter>"_i<Esc>
 
 " Insert pagebreak command
 " \clearpage: ends a page, and puts pending tables and figures on separate
 " float pages with no text
+" In twosided documents, clearpage clears both columns and puts text on the
+" following page
 autocmd FileType tex inoremap <Leader>cpg \clearpage<CR><++><Esc>?clearpage<Enter>"_i<Esc>
 
 
@@ -666,6 +683,17 @@ autocmd FileType tex inoremap <Leader>Hu {\Huge<Space><++>}<Space><++><Esc>?Huge
 
 
 
+"" Plots and Graphs
+
+" Insert time-based plot
+" To espcape commas in the legend command, use \legend{S(1\,1), S(2\,2)}
+autocmd FileType tex inoremap <Leader>tp \begin{figure}[htbp]<CR>\centering<CR>\begin{tikzpicture}%[xscale=<++>, yscale=<++>]<CR>\begin{axis}[<CR>grid=both,<CR>ymin=<++>,<CR>ymax=<++>,<CR>ylabel=<++>,<CR>%max<Space>space<Space>between<Space>ticks=1,<CR>xmin=<++>,<CR>xmax=<++>,<CR>xlabel=<++>]<CR>\addplot[color=black,<Space>mark=*,<Space>mark<Space>size=0.4,<Space>style=thick]table[x=<++>,<Space>y=<++>,<Space>col<Space>sep=comma]{./Imports/Data/<++>.csv};<CR>\legend{<++>,<Space><++>}<CR>\end{axis}<CR>\end{tikzpicture}<CR>\caption{<++>}<CR>\label{fig:<++>}<CR>\end{figure}<CR><++><Esc>?begin{axis}<Enter>"_i<Esc>
+
+" Insert frequency-based plot 
+autocmd FileType tex inoremap <Leader>fp \begin{figure}[htbp]<CR>\centering<CR>\begin{tikzpicture}<CR>\begin{axis}[<CR>grid=both,<CR>ymin=<++>,<CR>ymax=<++>,<CR>ylabel=<++>,<CR>%max<Space>space<Space>between<Space>ticks=1,<CR>xmode=log,<CR>xmin=1e<++>,<CR>xmax=1e<++>,<CR>xlabel=<++>]<CR>\addplot[color=black,<Space>mark=*,<Space>mark<Space>size=0.4,<Space>style=thick]table[x=<++>,<Space>y=<++>,<Space>col<Space>sep=comma]{./Imports/Data/<++>.csv};<CR>\legend{<++>,<Space><++>}<CR>\end{axis}<CR>\end{tikzpicture}<CR>\caption{<++>}<CR>\label{fig:<++>}<CR>\end{figure}<CR><++><Esc>?begin{axis}<Enter>"_i<Esc>
+
+
+
 "" Glossaries
 
 " Insert gls command
@@ -699,8 +727,13 @@ autocmd FileType sh inoremap <leader>oc #<Space>Checking<Space>if<Space><++><CR>
 
 """""""""""""""""""""""""""""""""""""""Python"""""""""""""""""""""""""""""""""""""""""""
 
+" Insert main function
 autocmd FileType python inoremap <leader>main def<Space>main():<CR><++><CR><CR>#<Space>main<Space>function<CR>if<Space>__name__<Space>==<Space>"__main__":<CR>main()<CR><++><Esc>?main<Enter>"_i<Esc>
 
+" Insert print commands
+autocmd FileType python inoremap <leader>ps print("<++>")<CR><++><Esc>?print<Enter>"_i<Esc>
+
+autocmd FileType python inoremap <leader>pv print(<++>)<CR><++><Esc>?print<Enter>"_i<Esc>
 
 """""""""""""""""""""""""""""""""""""""""C""""""""""""""""""""""""""""""""""""""""""""""
 
