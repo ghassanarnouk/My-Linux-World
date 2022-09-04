@@ -6,12 +6,13 @@ One Paragraph of project objective goes here
 
 1. [Ranger](/ranger)
 2. [Nvim](/nvim)
-3. [Zsh]()
-4. [Scripts](/scripts)
+3. [Visual Studio Code](/code)
+4. [Zsh]()
+5. [Scripts](/scripts)
 
 ## Prerequisites
 
-Any Linux environment.
+A Unix environment.
 
 ## Contributing
 
