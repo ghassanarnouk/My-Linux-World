@@ -457,7 +457,7 @@ autocmd FileType tex inoremap <Leader>tb \begin{table}[htbp]<CR>\centering<CR>\c
 
 autocmd FileType tex inoremap <Leader>ltb \begin{longtable}{<++>}<CR>\caption[<++>]{<++>\label{tab:<++>}}\\ <CR>{<++>}<CR>\csvreader[<++>]{<++>}{}<CR>{<++>}<CR>\end{longtable}<CR><++><Esc>?begin{longtable}<Enter>"_i<Esc>
 
-autocmd FileType tex inoremap <Leader>otb \begin{table}[htbp]<CR>\label{tb:<++>}<CR>\caption{<++>}<CR>\begin{centering}<CR>\begin{tabular}{<++>}<CR>\hline<CR><++><Space>&<Space><++><Space>&<Space><++>\\<CR>\hline<CR>\end{tabular}<CR>\end{centering}<CR>\end{table}<Esc>?begin{table}<Enter>"_i<Esc>
+autocmd FileType tex inoremap <Leader>otb \begin{table}[htbp]<CR>\label{tab:<++>}<CR>\caption{<++>}<CR>\begin{centering}<CR>\begin{tabular}{<++>}<CR>\hline<CR><++><Space>&<Space><++><Space>&<Space><++>\\<CR>\hline<CR>\end{tabular}<CR>\end{centering}<CR>\end{table}<Esc>?begin{table}<Enter>"_i<Esc>
 
 
 
