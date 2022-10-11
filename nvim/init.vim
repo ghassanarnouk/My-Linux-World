@@ -488,7 +488,7 @@ autocmd FileType tex inoremap <Leader>nnu \nonumber
 " Insert equation environment 
 autocmd FileType tex inoremap <Leader>eq \begin{equation}<CR><++><CR>\label{eqt:<++>}<CR>\end{equation}<CR><++><Esc>?begin<Enter>"_i<Esc>
 
-" Insert an unnumbered equation environment
+" Insert unnumbered equation environment
 autocmd FileType tex inoremap <Leader>ueq \begin{equation*}<CR><++><CR>\label{eqt:<++>}<CR>\end{equation*}<CR><++><Esc>?begin<Enter>"_i<Esc>
 
 " Insert subequation environment
@@ -587,12 +587,12 @@ autocmd FileType tex inoremap <Leader>cpg \clearpage<CR><++><Esc>?clearpage<Ente
 
 
 
-"" Reference
+"" Hyper referencing
 
 " Insert reference command
-autocmd FileType tex inoremap <Leader>r \ref{<++>}<Space><++><Esc>?ref<Enter>"_i<Esc>
+autocmd FileType tex inoremap <Leader>r \ref{<++>:<++>}<Space><++><Esc>?ref<Enter>"_i<Esc>
 
-" Insert hyperref command
+" Insert hyper reference command
 autocmd FileType tex inoremap <Leader>hr \hyperref[<++>:<++>]{<++>}<Space><++><Esc>?hyperref<Enter>"_i<Esc>
 
 
@@ -615,20 +615,21 @@ autocmd FileType tex inoremap <Leader>u \underline{<++>}<Space><++><Esc>?underli
 " Insert section environment
 autocmd FileType tex inoremap <Leader>s \section{<++>}<CR>\label{sct:<++>}<CR><++><CR>\clearpage<Esc>?section<Enter>"_i<Esc>
 
-" Insert unnumbered section environment
-autocmd FileType tex inoremap <Leader>us \section*{<++>}<CR>\label{sct:<++>}<CR><++><CR>\clearpage<Esc>?section<Enter>"_i<Esc>
-
 " Insert subsection environment
 autocmd FileType tex inoremap <Leader>ss \subsection{<++>}<CR>\label{ssct:<++>}<CR><++><CR>\clearpage<Esc>?section<Enter>"_i<Esc>
+
+" Insert subsubsection environment
+autocmd FileType tex inoremap <Leader>sss \subsubsection{<++>}<CR>\label{sssct:<++>}<CR><++><CR>\clearpage<Esc>?section<Enter>"_i<Esc>
+
+
+" Insert unnumbered section environment
+autocmd FileType tex inoremap <Leader>us \section*{<++>}<CR>\label{sct:<++>}<CR><++><CR>\clearpage<Esc>?section<Enter>"_i<Esc>
 
 " Insert unnumbered subsection environment
 autocmd FileType tex inoremap <Leader>uss \subsection*{<++>}<CR>\label{ssct:<++>}<CR><++><CR>\clearpage<Esc>?section<Enter>"_i<Esc>
 
-" Insert subsubsection environment
-autocmd FileType tex inoremap <Leader>sss \subsubsection{<++>}<CR>\label{ssct:<++>}<CR><++><CR>\clearpage<Esc>?section<Enter>"_i<Esc>
-
 " Insert unnumbered subsubsection environment
-autocmd FileType tex inoremap <Leader>usss \subsubsection*{<++>}<CR>\label{ssct:<++>}<CR><++><CR>\clearpage<Esc>?section<Enter>"_i<Esc>
+autocmd FileType tex inoremap <Leader>usss \subsubsection*{<++>}<CR>\label{sssct:<++>}<CR><++><CR>\clearpage<Esc>?section<Enter>"_i<Esc>
 
 
 
