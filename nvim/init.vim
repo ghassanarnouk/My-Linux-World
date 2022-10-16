@@ -636,9 +636,18 @@ autocmd FileType tex inoremap <Leader>usss \subsubsection*{<++>}<CR>\label{sssct
 "" Codes
 
 " [language={[LaTeX]TeX}]
-autocmd FileType tex inoremap <Leader>lst \begin{lstlisting}[language={<++>}, caption={<++>}, captionpos=b, label={lst:<++>}]<CR><++><CR>\end{lstlisting}<CR><++><Esc>?begin{lstlisting}<Enter>"_i<Esc>
+" Note: the automation below works. However, the minted package is
+" easier to use
+" autocmd FileType tex inoremap <Leader>lst \begin{lstlisting}[language={<++>}, caption={<++>}, captionpos=b, label={lst:<++>}]<CR><++><CR>\end{lstlisting}<CR><++><Esc>?begin{lstlisting}<Enter>"_i<Esc>
 
+" [In Progress]
 autocmd FileType tex inoremap <Leader>ver \begin{verbatim}<CR><++><CR>\end{verbatim}<CR><++><Esc>?begin{verbatim}<Enter>"_i<Esc>
+
+
+"  
+autocmd FileType tex inoremap <Leader>lst \begin{listing}[htbp]<CR>\inputminted[linenos=true, fontfamily=courier]{<++>}{./Imports/Code/<++>}<CR>\caption{<++>}<CR>\label{lst:<++>}<CR>\end{listing}<CR><++><Esc>?begin{listing}<Enter>"_i<Esc>
+ 
+
 
 "" Markdown
 
@@ -688,10 +697,10 @@ autocmd FileType tex inoremap <Leader>Hu {\Huge<Space><++>}<Space><++><Esc>?Huge
 
 " Insert time-based plot
 " To espcape commas in the legend command, use \legend{S(1\,1), S(2\,2)}
-autocmd FileType tex inoremap <Leader>tp \begin{figure}[htbp]<CR>\centering<CR>\begin{tikzpicture}%[xscale=<++>, yscale=<++>]<CR>\begin{axis}[<CR>grid=both,<CR>ymin=<++>,<CR>ymax=<++>,<CR>ylabel=<++>,<CR>%max<Space>space<Space>between<Space>ticks=1,<CR>xmin=<++>,<CR>xmax=<++>,<CR>xlabel=<++>]<CR>\addplot[color=black,<Space>mark=*,<Space>mark<Space>size=0.4,<Space>style=thick]table[x=<++>,<Space>y=<++>,<Space>col<Space>sep=comma]{./Imports/Data/<++>.csv};<CR>\legend{<++>,<Space><++>}<CR>\end{axis}<CR>\end{tikzpicture}<CR>\caption{<++>}<CR>\label{fig:<++>}<CR>\end{figure}<CR><++><Esc>?begin{axis}<Enter>"_i<Esc>
+autocmd FileType tex inoremap <Leader>tp \begin{figure}[htbp]<CR>\centering<CR>\begin{tikzpicture}%[xscale=<++>, yscale=<++>]<CR>\begin{axis}[<CR>grid=both,<CR>ymin=<++>,<CR>ymax=<++>,<CR>ylabel=<++>,<CR>%max<Space>space<Space>between<Space>ticks=1,<CR>xmin=<++>,<CR>xmax=<++>,<CR>xlabel=<++>,<CR>legend pos=outer north east,<CR>legend cell align=left]<CR>\addplot[color=black,<Space>mark=*,<Space>mark<Space>size=0.4,<Space>style=thick]table[x=<++>,<Space>y=<++>,<Space>col<Space>sep=comma]{./Imports/Data/<++>.csv};<CR>\legend{<++>,<Space><++>}<CR>\end{axis}<CR>\end{tikzpicture}<CR>\caption{<++>}<CR>\label{fig:<++>}<CR>\end{figure}<CR><++><Esc>?begin{axis}<Enter>"_i<Esc>
 
 " Insert frequency-based plot 
-autocmd FileType tex inoremap <Leader>fp \begin{figure}[htbp]<CR>\centering<CR>\begin{tikzpicture}<CR>\begin{axis}[<CR>grid=both,<CR>ymin=<++>,<CR>ymax=<++>,<CR>ylabel=<++>,<CR>%max<Space>space<Space>between<Space>ticks=1,<CR>xmode=log,<CR>xmin=1e<++>,<CR>xmax=1e<++>,<CR>xlabel=<++>]<CR>\addplot[color=black,<Space>mark=*,<Space>mark<Space>size=0.4,<Space>style=thick]table[x=<++>,<Space>y=<++>,<Space>col<Space>sep=comma]{./Imports/Data/<++>.csv};<CR>\legend{<++>,<Space><++>}<CR>\end{axis}<CR>\end{tikzpicture}<CR>\caption{<++>}<CR>\label{fig:<++>}<CR>\end{figure}<CR><++><Esc>?begin{axis}<Enter>"_i<Esc>
+autocmd FileType tex inoremap <Leader>fp \begin{figure}[htbp]<CR>\centering<CR>\begin{tikzpicture}<CR>\begin{axis}[<CR>grid=both,<CR>ymin=<++>,<CR>ymax=<++>,<CR>ylabel=<++>,<CR>%max<Space>space<Space>between<Space>ticks=1,<CR>xmode=log,<CR>xmin=1e<++>,<CR>xmax=1e<++>,<CR>xlabel=<++>,<CR>legend pos=outer north east,<CR>legend cell align=left]<CR>\addplot[color=black,<Space>mark=*,<Space>mark<Space>size=0.4,<Space>style=thick]table[x=<++>,<Space>y=<++>,<Space>col<Space>sep=comma]{./Imports/Data/<++>.csv};<CR>\legend{<++>,<Space><++>}<CR>\end{axis}<CR>\end{tikzpicture}<CR>\caption{<++>}<CR>\label{fig:<++>}<CR>\end{figure}<CR><++><Esc>?begin{axis}<Enter>"_i<Esc>
 
 
 
@@ -704,8 +713,14 @@ autocmd FileType tex inoremap <Leader>g \gls{<++>}<Space><++><Esc>?gls<Enter>"_i
 autocmd FileType tex inoremap <Leader>gls \newglossaryentry{<++>}<CR>{<CR>name={<++>},<CR>description={<++>}<CR>}<CR><++><Esc>?newglossaryentry<Enter>"_i<Esc>
 
 " Insert new acronym environment
-autocmd FileType tex inoremap <Leader>acr \newglossaryentry{<++>}<CR>{<CR>type=\acronymtype,<CR>name={<++>},<CR>description={<++>},<CR>first={<++>}<CR>}<CR><++><Esc>?newglossaryentry<Enter>"_i<Esc>
+autocmd FileType tex inoremap <Leader>acr \newglossaryentry{<++>}<CR>{<CR>type=\acronymtype,<CR>name={<++>},<CR>description={<++>},<CR>first={<++>}%<Space>\glsadd{<++>}},<CR>%<Space>see=[Glossary:]{<++>}<CR>}<CR><++><Esc>?newglossaryentry<Enter>"_i<Esc>
 " autocmd FileType tex inoremap ;acr \newglossaryentry{<++>}<CR>{<CR>type=\acronymtype,<CR>name={<++>},<CR>description={<++>},<CR>first={\glsentrydesc{<++>} (\glsentrytext{<++>})},<CR>plural={<++>},<CR>firstplural={\glsentrydescplural{<++>} (\glsentryplural{<++>})}<CR>}<CR><++><Esc>?newglossaryentry<Enter>"_i<Esc>
+
+" Insert new symbol environment
+autocmd FileType tex inoremap <Leader>sym \newglossaryentry{<++>}<CR>{<CR>type=symbols,<CR>name={\ensuremath{<++>}},<CR>description={<++>}<CR>}<CR><++><Esc>?newglossaryentry<Enter>"_i<Esc>
+
+" Insert new constant environment
+autocmd FileType tex inoremap <Leader>con \newglossaryentry{<++>}<CR>{<CR>type=constants,<CR>name={\ensuremath{<++>}},<CR>description={\mbox{}<Space><++> (\SI{<++>}{<++>})}<CR>}<CR><++><Esc>?newglossaryentry<Enter>"_i<Esc>
 
 
 "" Bibliography
