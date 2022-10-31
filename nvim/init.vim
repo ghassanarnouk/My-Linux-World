@@ -10,7 +10,7 @@
 "                                      Plugins
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-call plug#begin( '~/local/share/nvim/plugged')
+call plug#begin('~/local/share/nvim/plugged')
 
 " https://github.com/bluz71/vim-nightfly-guicolors
 Plug 'bluz71/vim-nightfly-guicolors'
@@ -819,5 +819,3 @@ autocmd Filetype asm inoremap <leader>rl ROL<Space><++>,<Space><++><CR><++><Esc>
 autocmd Filetype asm inoremap <leader>mv MOV<Space><++>,<Space><++><CR><++><Esc>?MOV<Enter>"_i<Esc>
 
 autocmd Filetype asm inoremap <leader>b BT<Space><++>,<Space><++><CR><++><Esc>?BT<Enter>"_i<Esc
-
-
