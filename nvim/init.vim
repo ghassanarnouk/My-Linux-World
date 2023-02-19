@@ -27,6 +27,8 @@ Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-surround'
 " https://vimawesome.com/plugin/nerdtree-red
 Plug 'scrooloose/nerdtree'
+" https://github.com/lewis6991/gitsigns.nvim
+Plug 'lewis6991/gitsigns.nvim'
 
 call plug#end()
 
@@ -77,7 +79,7 @@ noremap <localleader>g :Goyo 120x60<CR>
 
 """"""""""""""""""""""""""""""""""""""Easy-Align-Plugin"""""""""""""""""""""""""""""""""
 
-" To use this plugin with latex tables, use the following command: gaip**&
+" To use this plugin with latex tables, use the following command: gaip*& | gaip**&
 
 " To use this plugin with csv files, use the following command: gaip*,
 
@@ -135,6 +137,10 @@ let g:indentLine_char_list = ['¦', '┆', '┊', '|']
 " typing the command below
 "let g:indentLine_leadingSpaceChar = '.'
 
+
+""""""""""""""""""""""""""""""""""""""""""Gitsings""""""""""""""""""""""""""""""""""""""
+
+"lua-require(nvim)
 
 """""""""""""""""""""""""""""""""""""""Nerdtree-Plugin""""""""""""""""""""""""""""""""""
 
@@ -457,7 +463,7 @@ autocmd FileType tex inoremap <Leader>tb \begin{table}[htbp]<CR>\centering<CR>\c
 
 autocmd FileType tex inoremap <Leader>ltb \begin{longtable}{<++>}<CR>\caption[<++>]{<++>\label{tab:<++>}}\\ <CR>{<++>}<CR>\csvreader[<++>]{<++>}{}<CR>{<++>}<CR>\end{longtable}<CR><++><Esc>?begin{longtable}<Enter>"_i<Esc>
 
-autocmd FileType tex inoremap <Leader>otb \begin{table}[htbp]<CR>\label{tab:<++>}<CR>\caption{<++>}<CR>\begin{centering}<CR>\begin{tabular}{<++>}<CR>\hline<CR><++><Space>&<Space><++><Space>&<Space><++>\\<CR>\hline<CR>\end{tabular}<CR>\end{centering}<CR>\end{table}<Esc>?begin{table}<Enter>"_i<Esc>
+autocmd FileType tex inoremap <Leader>otb \begin{table}[htbp]<CR>\centering<CR>\caption{<++>}<CR>\begin{tabular}{<++>}<CR>\hline<CR><++><Space>&<Space><++><Space>&<Space><++>\\<CR>\hline<CR>\end{tabular}<CR>\label{tab:<++>}<CR>\end{table}<Esc>?begin{table}<Enter>"_i<Esc>
 
 
 
@@ -640,12 +646,12 @@ autocmd FileType tex inoremap <Leader>usss \subsubsection*{<++>}<CR>\label{sssct
 " easier to use
 " autocmd FileType tex inoremap <Leader>lst \begin{lstlisting}[language={<++>}, caption={<++>}, captionpos=b, label={lst:<++>}]<CR><++><CR>\end{lstlisting}<CR><++><Esc>?begin{lstlisting}<Enter>"_i<Esc>
 
-" [In Progress]
+" Insert verbatim environment
 autocmd FileType tex inoremap <Leader>ver \begin{verbatim}<CR><++><CR>\end{verbatim}<CR><++><Esc>?begin{verbatim}<Enter>"_i<Esc>
 
 
 "  
-autocmd FileType tex inoremap <Leader>lst \begin{listing}[htbp]<CR>\inputminted[linenos=true, fontfamily=courier]{<++>}{./Imports/Code/<++>}<CR>\caption{<++>}<CR>\label{lst:<++>}<CR>\end{listing}<CR><++><Esc>?begin{listing}<Enter>"_i<Esc>
+autocmd FileType tex inoremap <Leader>lst \begin{listing}[htbp]<CR>\footnotesize<CR>\inputminted[linenos=true, fontfamily=courier, autogobble, breaklines, bgcolor=bg]{<++>}{./Imports/Code/<++>}<CR>\caption{<++>}<CR>\label{lst:<++>}<CR>\end{listing}<CR><++><Esc>?begin{listing}<Enter>"_i<Esc>
  
 
 
@@ -697,11 +703,15 @@ autocmd FileType tex inoremap <Leader>Hu {\Huge<Space><++>}<Space><++><Esc>?Huge
 
 " Insert time-based plot
 " To espcape commas in the legend command, use \legend{S(1\,1), S(2\,2)}
-autocmd FileType tex inoremap <Leader>tp \begin{figure}[htbp]<CR>\centering<CR>\begin{tikzpicture}%[xscale=<++>, yscale=<++>]<CR>\begin{axis}[<CR>grid=both,<CR>ymin=<++>,<CR>ymax=<++>,<CR>ylabel=<++>,<CR>%max<Space>space<Space>between<Space>ticks=1,<CR>xmin=<++>,<CR>xmax=<++>,<CR>xlabel=<++>,<CR>legend pos=outer north east,<CR>legend cell align=left]<CR>\addplot[color=black,<Space>mark=*,<Space>mark<Space>size=0.4,<Space>style=thick]table[x=<++>,<Space>y=<++>,<Space>col<Space>sep=comma]{./Imports/Data/<++>.csv};<CR>\legend{<++>,<Space><++>}<CR>\end{axis}<CR>\end{tikzpicture}<CR>\caption{<++>}<CR>\label{fig:<++>}<CR>\end{figure}<CR><++><Esc>?begin{axis}<Enter>"_i<Esc>
+" Can add options to the \addplot command such as mark=*, mark=x, mark size=0.4, style=thick, style=dashed OR simply add `dashed` as its own option
+autocmd FileType tex inoremap <Leader>tp \begin{figure}[htbp]<CR>\centering<CR>\begin{tikzpicture}%[xscale=<++>, yscale=<++>]<CR>\begin{axis}[<CR>grid=both,<CR>ymin=<++>,<CR>ymax=<++>,<CR>ylabel=<++>,<CR>%max<Space>space<Space>between<Space>ticks=1,<CR>xmin=<++>,<CR>xmax=<++>,<CR>xlabel=<++>,<CR>legend pos=outer north east,<CR>legend cell align=left]<CR>\addplot[color=blue,<Space>style={ultra thick}]table[x=<++>,<Space>y=<++>,<Space>col<Space>sep=comma]{./Imports/Data/<++>.csv};<CR>\legend{<++>,<Space><++>}<CR>\end{axis}<CR>\end{tikzpicture}<CR>\caption{<++>}<CR>\label{fig:<++>}<CR>\end{figure}<CR><++><Esc>?begin{axis}<Enter>"_i<Esc>
 
 " Insert frequency-based plot 
-autocmd FileType tex inoremap <Leader>fp \begin{figure}[htbp]<CR>\centering<CR>\begin{tikzpicture}<CR>\begin{axis}[<CR>grid=both,<CR>ymin=<++>,<CR>ymax=<++>,<CR>ylabel=<++>,<CR>%max<Space>space<Space>between<Space>ticks=1,<CR>xmode=log,<CR>xmin=1e<++>,<CR>xmax=1e<++>,<CR>xlabel=<++>,<CR>legend pos=outer north east,<CR>legend cell align=left]<CR>\addplot[color=black,<Space>mark=*,<Space>mark<Space>size=0.4,<Space>style=thick]table[x=<++>,<Space>y=<++>,<Space>col<Space>sep=comma]{./Imports/Data/<++>.csv};<CR>\legend{<++>,<Space><++>}<CR>\end{axis}<CR>\end{tikzpicture}<CR>\caption{<++>}<CR>\label{fig:<++>}<CR>\end{figure}<CR><++><Esc>?begin{axis}<Enter>"_i<Esc>
+autocmd FileType tex inoremap <Leader>fp \begin{figure}[htbp]<CR>\centering<CR>\begin{tikzpicture}<CR>\begin{axis}[<CR>grid=both,<CR>ymin=<++>,<CR>ymax=<++>,<CR>ylabel=<++>,<CR>%max<Space>space<Space>between<Space>ticks=1,<CR>xmode=log,<CR>xmin=1e<++>,<CR>xmax=1e<++>,<CR>xlabel=<++>,<CR>legend pos=outer north east,<CR>legend cell align=left]<CR>\addplot[color=blue,<Space>mark=*,<Space>mark<Space>size=0.4,<Space>style=thick]table[x=<++>,<Space>y=<++>,<Space>col<Space>sep=comma]{./Imports/Data/<++>.csv};<CR>\legend{<++>,<Space><++>}<CR>\end{axis}<CR>\end{tikzpicture}<CR>\caption{<++>}<CR>\label{fig:<++>}<CR>\end{figure}<CR><++><Esc>?begin{axis}<Enter>"_i<Esc>
 
+" Insert sub-figures time-based plots
+" Thicker plot lines? You can toggle this using the following option: style={ultra thick}
+autocmd FileType tex inoremap <Leader>sftp \begin{figure}[htbp]<CR>\centering\captionsetup{format=hang}<CR>\begin{subfigure}[t]{0.475\textwidth}<CR>\centering\captionsetup{format=hang}<CR>\begin{tikzpicture}[xscale=<++>, yscale=<++>]<CR>\begin{axis}[<CR>grid=both,<CR>ymin=<++>,<CR>ymax=<++>,<CR>ylabel=<++>,<CR>%max<Space>space<Space>between<Space>ticks=1,<CR>xmin=<++>,<CR>xmax=<++>,<CR>xlabel=<++>,<CR>legend pos=outer north east,<CR>legend cell align=left]<CR>\addplot[color=blue,style={ultra thick}]table[x=<++>,<Space>y=<++>,<Space>col<Space>sep=comma]{./Imports/Data/<++>.csv};<CR>\legend{<++>,<Space><++>}<CR>\end{axis}<CR>\end{tikzpicture}<CR>\caption{<++>}<CR>\label{fig:<++>}<CR>\end{subfigure}%<CR>\hspace*{0.05\textwidth}<CR>\begin{subfigure}[t]{0.475\textwidth}<CR>\centering\captionsetup{format=hang}<CR>\begin{tikzpicture}[xscale=<++>, yscale=<++>]<CR>\begin{axis}[<CR>grid=both,<CR>ymin=<++>,<CR>ymax=<++>,<CR>ylabel=<++>,<CR>%max<Space>space<Space>between<Space>ticks=1,<CR>xmin=<++>,<CR>xmax=<++>,<CR>xlabel=<++>,<CR>legend pos=outer north east,<CR>legend cell align=left]<CR>\addplot[color=red,style={ultra thick}]table[x=<++>,<Space>y=<++>,<Space>col<Space>sep=comma]{./Imports/Data/<++>.csv};<CR>\legend{<++>,<Space><++>}<CR>\end{axis}<CR>\end{tikzpicture}<CR>\caption{<++>}<CR>\label{fig:<++>}<CR>\end{subfigure}%<CR>\caption{<++>}<CR>\label{fig:<++>}<CR>\end{figure}<CR><++><Esc>?begin{figure}<Enter>"_i<Esc>
 
 
 "" Glossaries
@@ -818,4 +828,11 @@ autocmd Filetype asm inoremap <leader>rl ROL<Space><++>,<Space><++><CR><++><Esc>
 
 autocmd Filetype asm inoremap <leader>mv MOV<Space><++>,<Space><++><CR><++><Esc>?MOV<Enter>"_i<Esc>
 
-autocmd Filetype asm inoremap <leader>b BT<Space><++>,<Space><++><CR><++><Esc>?BT<Enter>"_i<Esc
+autocmd Filetype asm inoremap <leader>b BT<Space><++>,<Space><++><CR><++><Esc>?BT<Enter>"_i<Esc>
+
+
+
+""""""""""""""""""""""""""""""""""""""""HTML""""""""""""""""""""""""""""""""""""""""""""
+
+" 
+autocmd Filetype html inoremap <leader>html <!DOCTYPE html><CR><html><CR><++><CR></html><Esc>?<html<Enter>"_i<Esc>
